@@ -1,0 +1,202 @@
+---
+title: "Building a Reliable Request–Response Pattern Over WebSockets (Without the Redis Overkill)"
+description: "To implement a reliable request-response pattern over WebSockets, use a Promise to handle responses directly, which minimizes infrastructure and latency. For parallel requests, utilize correlation IDs to prevent cross-talk. While Redis can be used for multi-server coordination, it introduces unnecessary complexity for most applications. The recommended approach is to use WebSocket Promises with correlation IDs for most scenarios, reserving Redis for cases requiring distributed systems or persistent workflows."
+---
+
+When building our AI debugging agent—or any system where the backend triggers work on a remote client—you quickly run into a surprisingly annoying problem: **how do you send a WebSocket request and wait for the reply right below that line of code, without turning your architecture into spaghetti or bolting on unnecessary infrastructure?** Most teams either hack together a fragile event listener or drag in Redis just to simulate a request–response cycle. In this post, I’ll show you a cleaner way: a simple, robust pattern that gives you synchronous-feeling APIs over WebSockets, scales for parallel calls, and avoids the heavy machinery unless you truly need it.
+
+Often we get the backend to send a task to a client over WebSockets and then wait for the result in the same place in the code—just like a function call:
+
+```
+socket.send("exec_task", payload);
+const response = await … // ← we want this to just work
+
+```
+
+Whether you're building a debugging agent, a distributed executor, or an AI-enhanced devtool, this pattern is incredibly powerful. But implementing it cleanly—and safely—is trickier than it looks.
+
+In this post, I'll walk through two common approaches developers consider:
+
+1. **Listen directly for the WebSocket response and wrap it in a Promise**
+2. **Have the client push the response to a Redis store and poll for updates**
+
+We’ll compare them, look at the edge cases, and end with a production-ready implementation.
+
+---
+
+## The Core Problem
+
+WebSockets are inherently event-driven:
+
+- The backend sends an event
+- The client replies via another event
+- The backend needs to capture the reply cleanly and continue execution
+
+But developers often want this flow to feel synchronous:
+
+```
+const result = await runRemoteTask(payload);
+
+```
+
+To achieve that, your backend needs a **request–response abstraction**.
+
+---
+
+# **Option 1 — Handle the Response Directly via WebSockets**
+
+This is the simplest and most idiomatic pattern: wrap the response listener in a Promise.
+
+```
+function receiveToolCallData(channelName: string, socket: any) {
+  return new Promise((resolve, reject) => {
+    const timeoutId = setTimeout(() => {
+      reject(new Error("Timed out waiting for WebSocket response"));
+    }, 5000);
+
+    socket.once(channelName, (data: any) => {
+      clearTimeout(timeoutId);
+      resolve(data);
+    });
+  });
+}
+
+```
+
+Usage:
+
+```
+socket.emit("exec_task", payload);
+const response = await receiveToolCallData("exec_task:result", socket);
+
+```
+
+### Why this works well
+
+- Minimal infrastructure
+- Low latency
+- The logic sits exactly where the task is triggered
+- Easy to reason about
+- No polling, no queues, no extra hops
+
+For single-server WebSocket setups, this is the cleanest approach.
+
+---
+
+# **But there's a catch: parallel requests**
+
+If you send multiple tasks at once, how does the server know which reply belongs to which request?
+
+You need **correlation IDs**.
+
+Here’s a production version:
+
+```
+function waitForWebSocketResponse(socket, event, correlationId, timeout = 5000) {
+  return new Promise((resolve, reject) => {
+    const timer = setTimeout(() => {
+      socket.off(event, handler);
+      reject(new Error("Timed out waiting for response"));
+    }, timeout);
+
+    function handler(data) {
+      if (data.correlationId !== correlationId) return;
+      clearTimeout(timer);
+      socket.off(event, handler);
+      resolve(data);
+    }
+
+    socket.on(event, handler);
+  });
+}
+
+```
+
+Now the flow becomes:
+
+```
+const correlationId = crypto.randomUUID();
+socket.emit("exec_task", { payload, correlationId });
+
+const result = await waitForWebSocketResponse(
+  socket,
+  "exec_task:result",
+  correlationId
+);
+
+```
+
+This pattern:
+
+- Prevents cross-talk between concurrent tasks
+- Avoids memory leaks
+- Behaves exactly like an async function call
+
+And no extra infrastructure is required.
+
+---
+
+# **Option 2 — Push the Response to Redis, Poll for Updates**
+
+A significantly more complex setup:
+
+1. Backend sends task → client
+2. Client executes task
+3. Client writes the result to Redis
+4. Backend polls Redis every X ms waiting for the result
+
+This works, but it introduces **latency and system complexity**:
+
+- Redis becomes a bottleneck
+- You’re polling instead of reacting
+- You accumulate stale keys
+- More failure modes
+- More infra to maintain
+
+This should be used only when absolutely necessary.
+
+---
+
+# **When Redis _Is_ the Right Choice**
+
+Redis shines when:
+
+- You run **multiple WebSocket servers**
+- You can't guarantee that the response will land on the same backend instance
+- You need persistence or retries
+- You’re implementing a distributed worker queue / job system
+
+If you're pushing your architecture toward:
+
+- horizontal scaling
+- multi-process Node
+- sticky sessions are unavailable
+
+…then WebSocket responses may arrive at the "wrong" server, and Redis acts as a coordination layer.
+
+In that world, polling Redis (or better: using Redis pub/sub / streams) becomes valid.
+
+But for most apps? It's unnecessary ceremony.
+
+---
+
+# **WebSocket vs Redis: A Quick Comparison**
+
+| Concern                | WebSocket Promise            | Redis Polling                    |
+| :--------------------- | :--------------------------- | :------------------------------- |
+| Latency                | **Immediate**                | Higher (poll interval)           |
+| Complexity             | **Low**                      | High                             |
+| Infra required         | None                         | Redis server                     |
+| Code clarity           | **Straightforward**          | Indirect                         |
+| Scaling across servers | Weak (needs sticky sessions) | Strong                           |
+| Best for               | Real-time request/response   | Distributed multi-server systems |
+
+---
+
+# **Final Recommendation**
+
+For 90% of applications:
+
+> Use the WebSocket Promise pattern with correlation IDs. It’s fast, clean, and exactly what WebSockets are made for.
+
+Only move to Redis when you truly need **multi-server coordination** or **persistent async workflows** that extend beyond a single WebSocket connection.
