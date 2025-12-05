@@ -1,88 +1,57 @@
 {
   "$schema": "https://mintlify.com/docs.json",
+  "name": "OnCall",
   "theme": "mint",
-  "name": "Mint Starter Kit",
   "colors": {
     "primary": "#A5FF12",
-    "light": "#76CC0C",
+    "light": "#6AA800",
     "dark": "#A5FF12"
   },
-  "favicon": "/favicon.svg",
-  "navigation": {
-    "tabs": [
-      {
-        "tab": "Guides",
-        "groups": [
-          {
-            "group": "Getting started",
-            "pages": [
-              "index",
-              "quickstart",
-              "development"
-            ]
-          },
-          {
-            "group": "Customization",
-            "pages": [
-              "essentials/settings",
-              "essentials/navigation"
-            ]
-          },
-          {
-            "group": "Writing content",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
-            ]
-          },
-          {
-            "group": "AI tools",
-            "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "API reference",
-        "groups": [
-          {
-            "group": "API documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
-            ]
-          }
-        ]
-      }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
+  "favicon": "/favicon.png",
+  "navigation": [
+    {
+      "group": "Categories",
+      "pages": [
+        "blog/architecture/index",
+        "blog/code-intelligence/index",
+        "blog/runtime-signals/index",
+        "blog/llm-reasoning/index",
+        "blog/debugging-cases/index",
+        "blog/engineering-lessons/index",
+        "blog/security-safety/index",
+        "blog/future-of-debugging/index"
+      ]
+    },
+    {
+      "group": "Product",
+      "pages": [
+        "product/changelog",
+        "product/roadmap",
+        "product/integrations"
+      ]
+    },
+    {
+      "group": "Community",
+      "pages": [
+        "community/beyond-prompts",
+        "community/discord-invite"
+      ]
+    },
+    {
+      "group": "Company",
+      "pages": [
+        "company/careers",
+        "company/contact"
+      ]
+    },
+    {
+      "group": "Legal",
+      "pages": [
+        "legal/terms-of-service",
+        "legal/privacy-policy"
       ]
     }
-  },
+  ],
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
@@ -90,33 +59,36 @@
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "label": "Main Website",
+        "href": "https://oncall.ai"
+      },
+      {
+        "label": "Contact",
+        "href": "mailto:hi@oncall.ai"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Get Early Access",
+      "href": "https://oncall.ai/signup"
     }
   },
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "cursor",
+      "vscode"
+    ]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "x": "https://x.com/oncalldebug",
+      "github": "https://github.com/oncall",
+      "linkedin": "https://linkedin.com/company/oncall"
     }
   }
 }
