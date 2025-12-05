@@ -8,50 +8,66 @@
     "dark": "#A5FF12"
   },
   "favicon": "/favicon.png",
-  "navigation": [
-    {
-      "group": "Categories",
-      "pages": [
-        "blog/architecture/index",
-        "blog/code-intelligence/index",
-        "blog/runtime-signals/index",
-        "blog/llm-reasoning/index",
-        "blog/debugging-cases/index",
-        "blog/engineering-lessons/index",
-        "blog/security-safety/index",
-        "blog/future-of-debugging/index"
-      ]
-    },
-    {
-      "group": "Product",
-      "pages": [
-        "product/changelog",
-        "product/roadmap",
-        "product/integrations"
-      ]
-    },
-    {
-      "group": "Community",
-      "pages": [
-        "community/beyond-prompts",
-        "community/discord-invite"
-      ]
-    },
-    {
-      "group": "Company",
-      "pages": [
-        "company/careers",
-        "company/contact"
-      ]
-    },
-    {
-      "group": "Legal",
-      "pages": [
-        "legal/terms-of-service",
-        "legal/privacy-policy"
-      ]
-    }
-  ],
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Engineering Notes",
+        "groups": [
+          {
+            "group": "Categories",
+            "pages": [
+              "blog/architecture/index",
+              "blog/code-intelligence/index",
+              "blog/runtime-signals/index",
+              "blog/llm-reasoning/index",
+              "blog/debugging-cases/index",
+              "blog/engineering-lessons/index",
+              "blog/security-safety/index",
+              "blog/future-of-debugging/index"
+            ]
+          },
+          {
+            "group": "Product",
+            "icon": "box",
+            "pages": [
+              "product/changelog",
+              "product/roadmap",
+              "product/integrations"
+            ]
+          },
+          {
+            "group": "Community",
+            "icon": "users",
+            "pages": [
+              "community/beyond-prompts",
+              "community/discord-invite"
+            ]
+          },
+          {
+            "group": "Company",
+            "icon": "building",
+            "pages": [
+              "company/careers",
+              "company/contact",
+              {
+                "group": "Main Website",
+                "url": "https://oncall.build",
+                "icon": "globe"
+              }
+            ]
+          },
+          {
+            "group": "Legal",
+            "icon": "scale",
+            "pages": [
+              "legal/terms-of-service",
+              "legal/privacy-policy"
+            ]
+          }
+        ]
+      }
+    ]
+  },
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
@@ -59,18 +75,14 @@
   "navbar": {
     "links": [
       {
-        "label": "Main Website",
-        "href": "https://oncall.ai"
-      },
-      {
         "label": "Contact",
-        "href": "mailto:hi@oncall.ai"
+        "href": "mailto:hi@oncall.build"
       }
     ],
     "primary": {
       "type": "button",
       "label": "Get Early Access",
-      "href": "https://oncall.ai/signup"
+      "href": "https://oncall.build/signup"
     }
   },
   "contextual": {
