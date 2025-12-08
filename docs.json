@@ -16,14 +16,14 @@
           {
             "group": "Categories",
             "pages": [
-              "blog/architecture/index",
-              "blog/code-intelligence/index",
-              "blog/runtime-signals/index",
-              "blog/llm-reasoning/index",
-              "blog/debugging-cases/index",
-              "blog/engineering-lessons/index",
-              "blog/security-safety/index",
-              "blog/future-of-debugging/index"
+              "categories/architecture/index",
+              "categories/code-intelligence/index",
+              "categories/runtime-signals/index",
+              "categories/llm-reasoning/index",
+              "categories/debugging-cases/index",
+              "categories/engineering-lessons/index",
+              "categories/security-safety/index",
+              "categories/future-of-debugging/index"
             ]
           },
           {
