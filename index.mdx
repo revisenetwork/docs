@@ -1,57 +1,79 @@
 ---
 title: "Engineering Notes"
-
-description: "Welcome to the new home for your documentation"
+description: "Technical deep dives into debugging, distributed systems, and the architecture behind OnCall."
+mode: "wide"
 ---
 
-## Setting up
+<Note>
+  **No SEO Fluff.**
+  These are engineering notes documenting system behavior, architectural decisions, and real-world debugging lessons. Whether you use OnCall or not, we hope you learn something about how modern distributed systems break (and how to fix them).
+</Note>
 
-Get your documentation site up and running in minutes.
+## The Philosophy
 
-<Card title="WAssup here" icon="rocket" horizontal href="/quickstart">
-  Follow our three step quickstart guide.
-</Card>
-
-## Make it yours
-
-Design a docs sitbjhbbjhbe that looks great and empowers your users.
-
-<Columns cols={2}>
-  <Card title="Edit locally" icon="pen-to-square" href="/development">
-    Edit your docs locally and preview them in real time.
+<CardGroup cols={1}>
+  <Card title="Why Logs > Prompts" icon="file-lines" href="/blog/philosophy/logs-over-prompts">
+    **The Manifesto.** Copilots hallucinate because they lack context. OnCall bets on runtime signals over chat windows. Read why we process logs locally instead of relying on long prompts.
   </Card>
-  <Card title="Customize your site" icon="palette" href="/essentials/settings">
-    Customize the design and colors of your site to match your brand.
-  </Card>
-  <Card title="Set up navigation" icon="map" href="/essentials/navigation">
-    Organize your docs to help users find what they need and succeed with your product.
-  </Card>
-  <Card title="API documentation" icon="terminal" href="/api-reference/introduction">
-    Auto-generate API documentation from OpenAPI specifications.
-  </Card>
-</Columns>
+</CardGroup>
 
-## Create beautiful pages
+## Browse by Topic
 
-Everything you need to create world-class documentation.
+<CardGroup cols={2}>
+  <Card title="Architecture" icon="server" href="/blog/architecture/index">
+    Local-first processing, high-throughput ingestion, and system design.
+  </Card>
+  <Card title="Code Intelligence" icon="code" href="/blog/code-intelligence/index">
+    Static analysis, AST mapping, and understanding source code structure.
+  </Card>
+  <Card title="Runtime Signals" icon="wave-pulse" href="/blog/runtime-signals/index">
+    Interpreting live logs, traces, and separating signal from noise.
+  </Card>
+  <Card title="LLM Reasoning" icon="brain" href="/blog/llm-reasoning/index">
+    Context engineering, token optimization, and preventing hallucinations.
+  </Card>
+  <Card title="Debugging Cases" icon="bug" href="/blog/debugging-cases/index">
+    War stories and step-by-step root cause analysis of real outages.
+  </Card>
+  <Card title="Engineering Lessons" icon="book-open" href="/blog/engineering-lessons/index">
+    Culture, incident response protocols, and the human side of SRE.
+  </Card>
+  <Card title="Security & Safety" icon="shield-check" href="/blog/security-safety/index">
+    PII redaction, zero-retention policies, and privacy architecture.
+  </Card>
+  <Card title="Future of Debugging" icon="telescope" href="/blog/future-of-debugging/index">
+    Agents vs. Copilots and the move toward autonomous remediation.
+  </Card>
+</CardGroup>
 
-<Columns cols={2}>
-  <Card title="Write with MDX" icon="pen-fancy" href="/essentials/markdown">
-    Use MDX to style your docs pages.
-  </Card>
-  <Card title="Code samples" icon="code" href="/essentials/code">
-    Add sample code to demonstrate how to use your product.
-  </Card>
-  <Card title="Images" icon="image" href="/essentials/images">
-    Display images and other media.
-  </Card>
-  <Card title="Reusable snippets" icon="recycle" href="/essentials/reusable-snippets">
-    Write once and reuse across your docs.
-  </Card>
-</Columns>
+## Community & Events
 
-## Need inspiration?
+<CardGroup cols={2}>
+  <Card title="Beyond Prompts" icon="users" href="/community/beyond-prompts">
+    Recaps and recordings from our developer meetups in Bangalore.
+  </Card>
+  <Card title="OnCall Discord" icon="discord" href="/community/discord-invite">
+    Join the *Runtime Signals* server to chat about distributed systems.
+  </Card>
+</CardGroup>
 
-<Card title="See complete examples" icon="stars" href="https://mintlify.com/customers">
-  Browse our showcase of exceptional documentation sites.
-</Card>
+## Latest Notes
+
+### [Anatomy of a Retry Storm](/blog/debugging-cases/retry-loop)
+How a single worker node took down our payment gateway, and how we traced the cascading failure using OnCall.
+<br/>
+
+### [Debugging Go Routines](/blog/debugging-cases/race-conditions)
+A guide to spotting race conditions without stopping the world.
+<br/>
+
+### [Designing for Developers](/blog/engineering-lessons/designing-for-devs)
+Why developer tools don't have to look ugly. The theory behind the OnCall dark mode.
+<br/>
+
+---
+
+<Note>
+  **Ready to debug faster?**
+  OnCall reads your logs so you don't have to. [Get Early Access](https://oncall.build)
+</Note>
