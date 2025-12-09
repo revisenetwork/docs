@@ -9,30 +9,66 @@
     },
     "favicon": "/favicon.svg",
     "navigation": {
-        "tabs": [
+        "groups": [
             {
-                "tab": "Engineering Notes",
-                "groups": [
-                    {
-                        "group": "Categories",
-                        "pages": [
-                            "categories/architecture/index",
-                            "categories/code-intelligence/index",
-                            "categories/runtime-signals/index",
-                            "categories/llm-reasoning/index",
-                            "categories/debugging-cases/index",
-                            "categories/engineering-lessons/index",
-                            "categories/security-and-safety/index",
-                            "categories/future-of-debugging/index"
-                        ]
-                    }
+                "group": "Categories",
+                "icon": "layer-group",
+                "pages": [
+                    "blog/architecture/index",
+                    "blog/code-intelligence/index",
+                    "blog/runtime-signals/index",
+                    "blog/llm-reasoning/index",
+                    "blog/debugging-cases/index",
+                    "blog/engineering-lessons/index",
+                    "blog/security-safety/index",
+                    "blog/future-of-debugging/index"
                 ]
+            },
+            {
+                "group": "Product",
+                "icon": "box",
+                "pages": [
+                    "product/changelog",
+                    "product/roadmap",
+                    "product/integrations"
+                ]
+            },
+            {
+                "group": "Community",
+                "icon": "users",
+                "pages": [
+                    "community/beyond-prompts",
+                    "community/discord-invite"
+                ]
+            },
+            {
+                "group": "Company",
+                "icon": "building",
+                "pages": [
+                    "company/careers",
+                    "company/contact"
+                ]
+            },
+            {
+                "group": "Legal",
+                "icon": "scale-balanced",
+                "pages": [
+                    "legal/terms-of-service",
+                    "legal/privacy-policy"
+                ]
+            }
+        ],
+        "anchors": [
+            {
+                "anchor": "Main Website",
+                "href": "https://oncall.build",
+                "icon": "globe"
             }
         ]
     },
     "logo": {
-        "light": "logo/light.svg",
-        "dark": "logo/dark.svg"
+        "light": "/logo/light.svg",
+        "dark": "/logo/dark.svg"
     },
     "navbar": {
         "links": [
@@ -45,7 +81,6 @@
             "type": "button",
             "label": "Get Early Access",
             "href": "https://github.com"
-            
         }
     },
     "contextual": {
