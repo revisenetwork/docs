@@ -1,5 +1,5 @@
 ---
-title: "Building a Reliable Request–Response Pattern Over WebSockets (Without the Redis Overkill)"
+title: "Building a Reliable Request–Response Pattern Over WebSockets"
 description: "To implement a reliable request-response pattern over WebSockets, use a Promise to handle responses directly, which minimizes infrastructure and latency. For parallel requests, utilize correlation IDs to prevent cross-talk. While Redis can be used for multi-server coordination, it introduces unnecessary complexity for most applications. The recommended approach is to use WebSocket Promises with correlation IDs for most scenarios, reserving Redis for cases requiring distributed systems or persistent workflows."
 ---
 
