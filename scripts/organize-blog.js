@@ -1,15 +1,18 @@
 const fs = require('fs');
 const path = require('path');
-const matter = require('gray-matter'); // You will install this in the Action
+const matter = require('gray-matter');
 
 // CONFIGURATION
 const BLOG_DIR = 'blog';
-const CATEGORY_BASE_DIR = 'category';
+// CHANGED: Folder name is now plural 'categories'
+const CATEGORY_BASE_DIR = 'categories'; 
 const INDEX_FILE = 'index.mdx';
 
+// Helper to match your folder naming convention (kebab-case)
 function getCleanCategory(category) {
   if (!category) return 'uncategorized';
-  return category.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+  // Converts "Code Intelligence" -> "code-intelligence"
+  return category.toLowerCase().trim().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
 }
 
 function moveNewFiles() {
@@ -29,7 +32,7 @@ function moveNewFiles() {
     const cleanCategory = getCleanCategory(category);
     const targetDir = path.join(CATEGORY_BASE_DIR, cleanCategory);
 
-    // 2. Create Directory if not exists
+    // 2. Create Directory if not exists (matches your specific folder list)
     if (!fs.existsSync(targetDir)) {
       fs.mkdirSync(targetDir, { recursive: true });
     }
@@ -42,14 +45,15 @@ function moveNewFiles() {
 }
 
 function updateIndex() {
-  // 1. Scan all files in category folders
   let allPosts = [];
   
   if (fs.existsSync(CATEGORY_BASE_DIR)) {
+    // Reads all folders: architecture, code-intelligence, etc.
     const categories = fs.readdirSync(CATEGORY_BASE_DIR);
     
     categories.forEach(cat => {
       const catDir = path.join(CATEGORY_BASE_DIR, cat);
+      // Ensure we only look at directories (ignores .DS_Store, etc.)
       if (fs.statSync(catDir).isDirectory()) {
         const files = fs.readdirSync(catDir);
         files.forEach(file => {
@@ -59,12 +63,12 @@ function updateIndex() {
           const content = fs.readFileSync(fullPath, 'utf8');
           const parsed = matter(content);
           
-          // Construct the URL (Mintlify style usually relies on file path)
-          const url = `${cat}/${path.parse(file).name}`;
+          // Construct URL: categories/code-intelligence/my-post
+          const url = `${CATEGORY_BASE_DIR}/${cat}/${path.parse(file).name}`;
           
           allPosts.push({
             title: parsed.data.title,
-            date: new Date(parsed.data.date || 0), // Default to epoch if no date
+            date: new Date(parsed.data.date || 0),
             image: parsed.data.image,
             description: parsed.data.description || '',
             url: url
@@ -74,14 +78,13 @@ function updateIndex() {
     });
   }
 
-  // 2. Sort by Date Descending
+  // Sort by Date Descending
   allPosts.sort((a, b) => b.date - a.date);
 
   if (allPosts.length === 0) return;
 
-  // 3. Generate Content
   const featured = allPosts[0];
-  const latest = allPosts.slice(1, 6); // Items 2,3,4,5,6
+  const latest = allPosts.slice(1, 6); 
 
   // Featured HTML/MDX
   const featuredContent = `
@@ -102,10 +105,9 @@ function updateIndex() {
   });
   latestContent += '</CardGroup>';
 
-  // 4. Inject into index.mdx
+  // Inject into index.mdx
   let indexContent = fs.readFileSync(INDEX_FILE, 'utf8');
 
-  // Regex to replace content between markers
   indexContent = indexContent.replace(
     /()([\s\S]*?)()/,
     `$1\n${featuredContent}\n$3`
@@ -120,6 +122,5 @@ function updateIndex() {
   console.log('Updated index.mdx');
 }
 
-// EXECUTE
 moveNewFiles();
 updateIndex();
