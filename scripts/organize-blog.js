@@ -7,7 +7,7 @@ const BLOG_DIR = 'blog';
 const CATEGORY_BASE_DIR = 'categories';
 const MAIN_INDEX_FILE = 'index.mdx';
 
-// Helper: Clean Category Name (e.g., "Security & Safety" -> "security-and-safety")
+// Helper: Clean Category Name
 function getCleanCategory(category) {
   if (!category) return 'uncategorized';
   return category.toLowerCase().trim()
@@ -23,7 +23,7 @@ function generateCard(post, icon = "newspaper") {
 </Card>`;
 }
 
-// Helper: Generate Featured Card HTML (Larger/Different)
+// Helper: Generate Featured Card HTML
 function generateFeaturedCard(post) {
   return `<Card title="${post.title}" icon="star" href="${post.url}" size="large">
   <img src="${post.image}" alt="${post.title}" />
@@ -92,6 +92,7 @@ function getAllPosts() {
       const content = fs.readFileSync(fullPath, 'utf8');
       const parsed = matter(content);
 
+      // Construct URL correctly for nested folders
       const url = `${CATEGORY_BASE_DIR}/${cat}/${path.parse(file).name}`;
 
       allPosts.push({
@@ -105,44 +106,40 @@ function getAllPosts() {
     });
   });
 
-  // Sort Descending (Newest First)
   return allPosts.sort((a, b) => b.date - a.date);
 }
 
-// 3. UPDATE MAIN INDEX
+// 3. UPDATE MAIN INDEX (Root)
 function updateMainIndex(allPosts) {
   if (allPosts.length === 0) return;
 
-  const featured = allPosts[0]; // Newest is featured
-  const latest = allPosts.slice(1); // Rest are latest
+  const featured = allPosts[0];
+  const latest = allPosts.slice(1);
 
   let indexContent = fs.readFileSync(MAIN_INDEX_FILE, 'utf8');
 
-  // Replace Featured
-  const featuredHTML = generateFeaturedCard(featured);
-  // Regex looks for "## Featured" and replaces everything until the next "##" or end of file
-  indexContent = indexContent.replace(
-    /(## Featured\n)([\s\S]*?)(?=\n##|$)/, 
-    `$1\n${featuredHTML}\n`
-  );
+  // Regex to find "## Featured" and replace content until next header
+  const featuredRegex = /(##\s*Featured\s*\n)([\s\S]*?)(?=\n##|$)/i;
+  const latestRegex = /(##\s*Latest\s*\n)([\s\S]*?)(?=\n##|$)/i;
 
-  // Replace Latest
-  let latestHTML = '<CardGroup cols={2}>\n';
-  latest.forEach(post => latestHTML += `  ${generateCard(post)}\n`);
-  latestHTML += '</CardGroup>';
+  if (featuredRegex.test(indexContent)) {
+      indexContent = indexContent.replace(featuredRegex, `$1\n${generateFeaturedCard(featured)}\n`);
+  }
 
-  indexContent = indexContent.replace(
-    /(## Latest\n)([\s\S]*?)(?=\n##|$)/, 
-    `$1\n${latestHTML}\n`
-  );
+  if (latestRegex.test(indexContent)) {
+      let latestHTML = '<CardGroup cols={2}>\n';
+      latest.forEach(post => latestHTML += `  ${generateCard(post)}\n`);
+      latestHTML += '</CardGroup>';
+      
+      indexContent = indexContent.replace(latestRegex, `$1\n${latestHTML}\n`);
+  }
 
   fs.writeFileSync(MAIN_INDEX_FILE, indexContent);
   console.log('Updated Main Index');
 }
 
-// 4. UPDATE CATEGORY INDEXES
+// 4. UPDATE CATEGORY INDEXES (Sub-folders)
 function updateCategoryIndexes(allPosts) {
-  // Group posts by category slug
   const postsByCat = {};
   allPosts.forEach(post => {
     if (!postsByCat[post.categorySlug]) postsByCat[post.categorySlug] = [];
@@ -154,29 +151,28 @@ function updateCategoryIndexes(allPosts) {
     if (!fs.existsSync(catIndexPath)) return;
 
     let catContent = fs.readFileSync(catIndexPath, 'utf8');
-    const posts = postsByCat[catSlug]; // Already sorted by date
+    const posts = postsByCat[catSlug]; // Already sorted newest first
 
     let listHTML = '<CardGroup cols={1}>\n';
     posts.forEach(post => listHTML += `  ${generateCard(post)}\n`);
     listHTML += '</CardGroup>';
 
-    // Update under "## All Articles"
-    // Using markers for safety in category files, or fallback to header regex
-    if (catContent.includes('')) {
-        catContent = catContent.replace(
-            /()([\s\S]*?)()/,
-            `$1\n${listHTML}\n$3`
-        );
+    // REGEX FIX: Look specifically for "## All Articles"
+    // The 'i' flag makes it case insensitive.
+    // The '(?=\n##|$)' part ensures we stop at the next header or end of file.
+    const headerRegex = /(##\s*All Articles\s*\n)([\s\S]*?)(?=\n##|$)/i;
+
+    if (headerRegex.test(catContent)) {
+        // FOUND: Replace the content under the header
+        catContent = catContent.replace(headerRegex, `$1\n${listHTML}\n`);
+        console.log(`Updated list in ${catSlug}`);
     } else {
-        // Fallback: Just look for ## All Articles
-        catContent = catContent.replace(
-            /(## All Articles\n)([\s\S]*?)(?=\n##|$)/,
-            `$1\n${listHTML}\n`
-        );
+        // NOT FOUND: Append to bottom to avoid overwriting top of file
+        console.log(`Header '## All Articles' not found in ${catSlug}. Appending to bottom.`);
+        catContent += `\n\n## All Articles\n\n${listHTML}`;
     }
 
     fs.writeFileSync(catIndexPath, catContent);
-    console.log(`Updated Category Index: ${catSlug}`);
   });
 }
 
