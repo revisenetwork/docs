@@ -11,12 +11,12 @@ description: "Why we are moving from console.log to autonomous agents."
 Debugging is evolving. We are moving away from manual stack trace analysis toward autonomous agents that can diagnose and patch code in real-time.
 
 <Note>
-  This post assumes you have the **Termite CLI** installed. If not, check out our [installation guide](/get-started).
+  This post assumes you have the **Termite CLI** installed. If not, check out our [installation guide](/index.mdx).
 </Note>
 
 ## Intelligent Error parsing
 
-Traditional debuggers give you the *where*. AI debuggers give you the *why*.
+Traditional debuggers give you the _where_. AI debuggers give you the _why_.
 
 <CardGroup cols={2}>
   <Card title="Context Awareness" icon="brain">
@@ -32,15 +32,30 @@ Traditional debuggers give you the *where*. AI debuggers give you the *why*.
 Here is how the workflow changes when you adopt an AI-first approach.
 
 <CodeGroup>
-  ```bash Old Way
-  # 1. Run code
-  # 2. See error
-  # 3. Copy error to Google/StackOverflow
-  # 4. Try random fix
-  npm run dev
+
+```bash Old Way
+# 1. Run code
+# 2. See error
+# 3. Copy error to Google/StackOverflow
+# 4. Try random fix
+npm run dev
+```
+
+
+```bash New Way (OnCall)
+# 1. Run code
+# 2. OnCall intercepts error
+# 3. OnCall suggests fix
+# 4. You press 'y' to apply
+oncall run dev
+```
+
 </CodeGroup>
-  
-What's Next?
+
+## What's Next?
+
 We are currently rolling out beta access to our VS Code extension.
 
-<Tip> Join our Discord community to get a beta invite code this week! </Tip>
+<Tip>
+  Join our Discord community to get a beta invite code this week!
+</Tip>
