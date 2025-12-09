@@ -1,77 +1,85 @@
 {
-  "$schema": "https://mintlify.com/docs.json",
-  "name": "OnCall Debug",
-  "theme": "mint",
-  "colors": {
-    "primary": "#A5FF12",
-    "light": "#6AA800",
-    "dark": "#A5FF12"
-  },
-  "favicon": "/favicon.svg",
-  "navigation": {
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Main Website",
-          "href": "https://oncall.build",
-          "icon": "globe"
-        }
-      ]
+    "$schema": "https://mintlify.com/docs.json",
+    "name": "OnCall Debug",
+    "theme": "mint",
+    "colors": {
+        "primary": "#A5FF12",
+        "light": "#6AA800",
+        "dark": "#A5FF12"
     },
-    "tabs": [
-      {
-        "tab": "Engineering Notes",
-        "groups": [
-          {
-            "group": "Categories",
-            "pages": [
-              "categories/architecture/index",
-              "categories/code-intelligence/index",
-              "categories/runtime-signals/index",
-              "categories/llm-reasoning/index",
-              "categories/debugging-cases/index",
-              "categories/engineering-lessons/index",
-              "categories/security-and-safety/index",
-              "categories/future-of-debugging/index"
+    "favicon": "/favicon.svg",
+    "navigation": {
+        "global": {
+            "anchors": [
+                {
+                    "anchor": "Main Website",
+                    "href": "https://oncall.build",
+                    "icon": "globe"
+                }
             ]
-          }
+        },
+        "tabs": [
+            {
+                "tab": "Engineering Notes",
+                "groups": [
+                    {
+                        "group": "Categories",
+                        "pages": [
+                            "categories/architecture/index",
+                            "categories/code-intelligence/index",
+                            "categories/runtime-signals/index",
+                            "categories/llm-reasoning/index",
+                            "categories/debugging-cases/index",
+                            "categories/engineering-lessons/index",
+                            "categories/security-and-safety/index",
+                            "categories/future-of-debugging/index"
+                        ]
+                    },
+                    {
+                        "group": "Community",
+                        "icon": "users",
+                        "pages": [
+                            "community/beyond-prompts",
+                            "community/discord-invite"
+                        ]
+                    }
+                ]
+            }
         ]
-      }
-    ]
-  },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
-  },
-  "navbar": {
-    "links": [
-      {
-        "label": "Contact",
-        "href": "https://github.com"
-      }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Get Early Access",
-      "href": "https://github.com"
+    },
+    "logo": {
+        "light": "/logo/light.svg",
+        "dark": "/logo/dark.svg"
+    },
+    "navbar": {
+        "links": [
+            {
+                "label": "Contact",
+                "href": "https://github.com"
+            }
+        ],
+        "primary": {
+            "type": "button",
+            "label": "Get Early Access",
+            "href": "https://github.com"
+        }
+    },
+    "contextual": {
+        "options": [
+            "copy",
+            "view",
+            "chatgpt",
+            "claude",
+            "perplexity",
+            "cursor",
+            "vscode"
+        ]
+    },
+    "footer": {
+        "socials": {
+            "x": "https://github.com",
+            "github": "https://github.com",
+            "linkedin": "https://github.com"
+        }
     }
-  },
-  "contextual": {
-    "options": [
-      "copy",
-      "view",
-      "chatgpt",
-      "claude",
-      "perplexity",
-      "cursor",
-      "vscode"
-    ]
-  },
-  "footer": {
-    "socials": {
-      "x": "https://github.com",
-      "github": "https://github.com",
-      "linkedin": "https://github.com"
-    }
-  }
 }
