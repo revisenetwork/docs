@@ -82,6 +82,7 @@
     "primary": {
       "type": "button",
       "label": "Get Early Access",
+      "color": "black",
       "href": "https://oncall.build/signup"
     }
   },
