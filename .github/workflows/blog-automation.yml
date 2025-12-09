@@ -1,0 +1,35 @@
+name: Blog Automation
+
+on:
+  push:
+    paths:
+      - 'blog/**' # Only triggers when files are added/modified in /blog
+
+permissions:
+  contents: write # Required to push changes back to the repo
+
+jobs:
+  organize-and-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies
+        run: npm install gray-matter
+
+      - name: Run Automation Script
+        run: node scripts/organize-blog.js
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add category/ index.mdx blog/
+          # Check if there are changes before committing to avoid errors
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Automated: Organized blog posts and updated index" && git push)
