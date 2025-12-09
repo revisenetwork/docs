@@ -11,7 +11,7 @@
     "navigation": {
         "tabs": [
             {
-               
+                "tab": "Engineering Notes",
                 "groups": [
                     {
                         "group": "Categories",
@@ -25,6 +25,7 @@
                             "categories/security-and-safety/index",
                             "categories/future-of-debugging/index"
                         ]
+                      
                     }
                 ]
             }
