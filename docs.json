@@ -3,9 +3,9 @@
     "name": "OnCall Debug",
     "theme": "mint",
     "colors": {
-        "primary": "#FF4800",
+        "primary": "#45BD00",
         "light": "#FF4800",
-        "dark": "#FF4800"
+        "dark": "#45BD00"
     },
     "favicon": "/favicon.svg",
     "navigation": {
