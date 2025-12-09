@@ -37,7 +37,6 @@
                     },
                     {
                         "group": "Community",
-                        "icon": "users",
                         "pages": [
                             "community/beyond-prompts",
                             "community/discord-invite"
