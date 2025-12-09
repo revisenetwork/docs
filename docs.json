@@ -25,26 +25,6 @@
                             "categories/security-and-safety/index",
                             "categories/future-of-debugging/index"
                         ]
-                    },
-                    {
-                        "group": "Product",
-                        "icon": "box",
-                        "pages": []
-                    },
-                    {
-                        "group": "Community",
-                        "icon": "users",
-                        "pages": []
-                    },
-                    {
-                        "group": "Company",
-                        "icon": "building",
-                        "pages": []
-                    },
-                    {
-                        "group": "Legal",
-                        "icon": "scale",
-                        "pages": []
                     }
                 ]
             }
