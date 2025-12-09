@@ -14,6 +14,7 @@
                 "group": "Categories",
                 "icon": "layer-group",
                 "pages": [
+                    "blog/index",
                     "blog/architecture/index",
                     "blog/code-intelligence/index",
                     "blog/runtime-signals/index",
