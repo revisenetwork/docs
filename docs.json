@@ -1,69 +1,122 @@
 {
-    "$schema": "https://mintlify.com/docs.json",
-    "name": "OnCall Debug",
-    "theme": "mint",
-    "colors": {
-        "primary": "#A5FF12",
-        "light": "#6AA800",
-        "dark": "#A5FF12"
-    },
-    "favicon": "/favicon.svg",
-    "navigation": {
-        "tabs": [
-            {
-                "tab": "Engineering Notes",
-                "groups": [
-                    {
-                        "group": "Categories",
-                        "pages": [
-                            "categories/architecture/index",
-                            "categories/code-intelligence/index",
-                            "categories/runtime-signals/index",
-                            "categories/llm-reasoning/index",
-                            "categories/debugging-cases/index",
-                            "categories/engineering-lessons/index",
-                            "categories/security-and-safety/index",
-                            "categories/future-of-debugging/index"
-                        ]
-                    }
-                ]
-            }
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Mint Starter Kit",
+  "colors": {
+    "primary": "#16A34A",
+    "light": "#07C983",
+    "dark": "#15803D"
+  },
+  "favicon": "/favicon.svg",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Guides",
+        "groups": [
+          {
+            "group": "Getting started",
+            "pages": [
+              "index",
+              "quickstart",
+              "development"
+            ]
+          },
+          {
+            "group": "Customization",
+            "pages": [
+              "essentials/settings",
+              "essentials/navigation"
+            ]
+          },
+          {
+            "group": "Writing content",
+            "pages": [
+              "essentials/markdown",
+              "essentials/code",
+              "essentials/images",
+              "essentials/reusable-snippets"
+            ]
+          },
+          {
+            "group": "AI tools",
+            "pages": [
+              "ai-tools/cursor",
+              "ai-tools/claude-code",
+              "ai-tools/windsurf"
+            ]
+          }
         ]
-    },
-    "logo": {
-        "light": "logo/light.svg",
-        "dark": "logo/dark.svg"
-    },
-    "navbar": {
-        "links": [
-            {
-                "label": "Contact",
-                "href": "https://github.com"
-            }
-        ],
-        "primary": {
-            "type": "button",
-            "label": "Get Early Access",
-            "href": "https://github.com"
-            
-        }
-    },
-    "contextual": {
-        "options": [
-            "copy",
-            "view",
-            "chatgpt",
-            "claude",
-            "perplexity",
-            "cursor",
-            "vscode"
+      },
+      {
+        "tab": "API reference",
+        "groups": [
+          {
+            "group": "API documentation",
+            "pages": [
+              "api-reference/introduction"
+            ]
+          },
+          {
+            "group": "Endpoint examples",
+            "pages": [
+              "api-reference/endpoint/get",
+              "api-reference/endpoint/create",
+              "api-reference/endpoint/delete",
+              "api-reference/endpoint/webhook"
+            ]
+          }
         ]
-    },
-    "footer": {
-        "socials": {
-            "x": "https://github.com",
-            "github": "https://github.com",
-            "linkedin": "https://github.com"
+      }
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Documentation",
+          "href": "https://mintlify.com/docs",
+          "icon": "book-open-cover"
+        },
+        {
+          "anchor": "Blog",
+          "href": "https://mintlify.com/blog",
+          "icon": "newspaper"
         }
+      ]
     }
+  },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Support",
+        "href": "mailto:hi@mintlify.com"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Dashboard",
+      "href": "https://dashboard.mintlify.com"
+    }
+  },
+  "contextual": {
+    "options": [
+     "copy",
+     "view",
+     "chatgpt",
+     "claude",
+     "perplexity",
+     "mcp",
+     "cursor",
+     "vscode"
+   ]
+  },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/mintlify",
+      "github": "https://github.com/mintlify",
+      "linkedin": "https://linkedin.com/company/mintlify"
+    }
+  }
 }
