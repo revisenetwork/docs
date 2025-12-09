@@ -3,7 +3,7 @@
     "name": "OnCall Debug",
     "theme": "mint",
     "colors": {
-        "primary": "#45BD00",
+        "primary": "#2F8000",
         "light": "#45BD00",
         "dark": "#45BD00"
     },
@@ -20,7 +20,7 @@
         },
         "tabs": [
             {
-                "tab": "Engineering Notes",
+                "tab": "Blog",
                 "groups": [
                     {
                         "group": "Categories",
