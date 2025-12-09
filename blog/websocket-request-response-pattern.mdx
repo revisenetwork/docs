@@ -1,6 +1,7 @@
 ---
 title: "Building a Reliable Request–Response Pattern Over WebSockets"
 description: "Null"
+category: "architecture"
 ---
 
 When building our AI debugging agent—or any system where the backend triggers work on a remote client—you quickly run into a surprisingly annoying problem: **how do you send a WebSocket request and wait for the reply right below that line of code, without turning your architecture into spaghetti or bolting on unnecessary infrastructure?** Most teams either hack together a fragile event listener or drag in Redis just to simulate a request–response cycle. In this post, I’ll show you a cleaner way: a simple, robust pattern that gives you synchronous-feeling APIs over WebSockets, scales for parallel calls, and avoids the heavy machinery unless you truly need it.
