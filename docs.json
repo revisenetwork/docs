@@ -58,13 +58,13 @@
         "links": [
             {
                 "label": "Contact",
-                "href": "mailto:hi@oncall.build"
+                "href": "https://github.com"
             }
         ],
         "primary": {
             "type": "button",
             "label": "Get Early Access",
-            "href": "https://oncall.build/signup"
+            "href": "https://github.com"
         }
     },
     "contextual": {
@@ -80,9 +80,9 @@
     },
     "footer": {
         "socials": {
-            "x": "https://x.com/oncalldebug",
-            "github": "https://github.com/oncall",
-            "linkedin": "https://linkedin.com/company/oncall"
+            "x": "https://github.com",
+            "github": "https://github.com",
+            "linkedin": "https://github.com"
         }
     }
 }
