@@ -39,13 +39,7 @@
                     {
                         "group": "Company",
                         "icon": "building",
-                        "pages": [
-                            {
-                                "label": "Main Website",
-                                "href": "https://oncall.build",
-                                "icon": "globe"
-                            }
-                        ]
+                        "pages": []
                     },
                     {
                         "group": "Legal",
