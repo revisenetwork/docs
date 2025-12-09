@@ -30,17 +30,12 @@
             "group": "Product",
             "icon": "box",
             "pages": [
-              "product/changelog",
-              "product/roadmap",
-              "product/integrations"
             ]
           },
           {
             "group": "Community",
             "icon": "users",
             "pages": [
-              "community/beyond-prompts",
-              "community/discord-invite"
             ]
           },
           {
@@ -60,8 +55,6 @@
             "group": "Legal",
             "icon": "scale",
             "pages": [
-              "legal/terms-of-service",
-              "legal/privacy-policy"
             ]
           }
         ]
