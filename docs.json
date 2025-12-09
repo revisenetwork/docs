@@ -23,39 +23,6 @@
                     "blog/security-safety/index",
                     "blog/future-of-debugging/index"
                 ]
-            },
-            {
-                "group": "Product",
-                "icon": "box",
-                "pages": [
-                    "product/changelog",
-                    "product/roadmap",
-                    "product/integrations"
-                ]
-            },
-            {
-                "group": "Community",
-                "icon": "users",
-                "pages": [
-                    "community/beyond-prompts",
-                    "community/discord-invite"
-                ]
-            },
-            {
-                "group": "Company",
-                "icon": "building",
-                "pages": [
-                    "company/careers",
-                    "company/contact"
-                ]
-            },
-            {
-                "group": "Legal",
-                "icon": "scale-balanced",
-                "pages": [
-                    "legal/terms-of-service",
-                    "legal/privacy-policy"
-                ]
             }
         ],
         "anchors": [
