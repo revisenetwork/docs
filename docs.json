@@ -42,8 +42,7 @@
             "group": "Company",
             "icon": "building",
             "pages": [
-              "company/careers",
-              "company/contact",
+              
               {
                 "group": "Main Website",
                 "url": "https://oncall.build",
