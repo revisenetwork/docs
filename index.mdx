@@ -12,7 +12,7 @@ mode: "wide"
 ## The Philosophy
 
 <CardGroup cols={1}>
-  <Card title="Why Logs > Prompts" icon="file-lines" href="/blog/philosophy/logs-over-prompts">
+  <Card title="Why Logs > Prompts" icon="file-lines">
     **The Manifesto.** Copilots hallucinate because they lack context. OnCall bets on runtime signals over chat windows. Read why we process logs locally instead of relying on long prompts.
   </Card>
 </CardGroup>
@@ -20,28 +20,28 @@ mode: "wide"
 ## Browse by Topic
 
 <CardGroup cols={2}>
-  <Card title="Architecture" icon="server" href="/blog/architecture/index">
+  <Card title="Architecture" icon="server">
     Local-first processing, high-throughput ingestion, and system design.
   </Card>
-  <Card title="Code Intelligence" icon="code" href="/blog/code-intelligence/index">
+  <Card title="Code Intelligence" icon="code">
     Static analysis, AST mapping, and understanding source code structure.
   </Card>
-  <Card title="Runtime Signals" icon="wave-pulse" href="/blog/runtime-signals/index">
+  <Card title="Runtime Signals" icon="wave-pulse" >
     Interpreting live logs, traces, and separating signal from noise.
   </Card>
-  <Card title="LLM Reasoning" icon="brain" href="/blog/llm-reasoning/index">
+  <Card title="LLM Reasoning" icon="brain" >
     Context engineering, token optimization, and preventing hallucinations.
   </Card>
-  <Card title="Debugging Cases" icon="bug" href="/blog/debugging-cases/index">
+  <Card title="Debugging Cases" icon="bug">
     War stories and step-by-step root cause analysis of real outages.
   </Card>
-  <Card title="Engineering Lessons" icon="book-open" href="/blog/engineering-lessons/index">
+  <Card title="Engineering Lessons" icon="book-open" >
     Culture, incident response protocols, and the human side of SRE.
   </Card>
-  <Card title="Security & Safety" icon="shield-check" href="/blog/security-safety/index">
+  <Card title="Security & Safety" icon="shield-check">
     PII redaction, zero-retention policies, and privacy architecture.
   </Card>
-  <Card title="Future of Debugging" icon="telescope" href="/blog/future-of-debugging/index">
+  <Card title="Future of Debugging" icon="telescope" >
     Agents vs. Copilots and the move toward autonomous remediation.
   </Card>
 </CardGroup>
@@ -49,27 +49,14 @@ mode: "wide"
 ## Community & Events
 
 <CardGroup cols={2}>
-  <Card title="Beyond Prompts" icon="users" href="/community/beyond-prompts">
+  <Card title="Beyond Prompts" icon="users" >
     Recaps and recordings from our developer meetups in Bangalore.
   </Card>
-  <Card title="OnCall Discord" icon="discord" href="/community/discord-invite">
+  <Card title="OnCall Discord" icon="discord" >
     Join the *Runtime Signals* server to chat about distributed systems.
   </Card>
 </CardGroup>
 
-## Latest Notes
-
-### [Anatomy of a Retry Storm](/blog/debugging-cases/retry-loop)
-How a single worker node took down our payment gateway, and how we traced the cascading failure using OnCall.
-<br/>
-
-### [Debugging Go Routines](/blog/debugging-cases/race-conditions)
-A guide to spotting race conditions without stopping the world.
-<br/>
-
-### [Designing for Developers](/blog/engineering-lessons/designing-for-devs)
-Why developer tools don't have to look ugly. The theory behind the OnCall dark mode.
-<br/>
 
 ---
 
