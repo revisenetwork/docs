@@ -3,10 +3,10 @@ name: Blog Automation
 on:
   push:
     paths:
-      - 'blog/**'
+      - 'blog/**' # Triggers only when you upload a file to the blog folder
 
 permissions:
-  contents: write
+  contents: write # Required to let the bot save changes to your repo
 
 jobs:
   organize-and-update:
@@ -30,6 +30,12 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          # CHANGED: Now adds the plural 'categories' folder
-          git add categories/ index.mdx blog/
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Automated: Organized blog posts into categories" && git push)
+          
+          # Stage all changes: 
+          # 1. The main index (root)
+          # 2. The categories folder (where files moved to + category indexes)
+          # 3. The blog folder (to record that the file was removed/moved from here)
+          git add index.mdx categories/ blog/
+          
+          # Commit only if there are changes
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Automated: Blog post rotation and index update" && git push)
