@@ -1,24 +1,43 @@
 ---
-title: "Future of Debugging"
-description: "Agents, autonomous remediation, and the road ahead."
-icon: "telescope"
+title: "Runtime Signals"
+description: "Interpreting the noise of distributed systems. Deep dives into logs, traces, and the reality of production environments."
 mode: "wide"
+icon: "wave-pulse"
 ---
 
 <Note>
-We are moving from "Copilots" that chat to "Agents" that act. This category explores the R&D side of OnCall and where the industry is heading.
+  **The map is not the territory.**
+  Static analysis and code graphs show you how the system *should* behave. Runtime signals—logs, traces, and metrics—show you what is *actually* happening. When production breaks, the truth lies in the signals.
 </Note>
 
-## Vision
+## The Philosophy
 
-<CardGroup cols={2}>
-  <Card title="Agents vs. Copilots" icon="robot" >
-    Why the chat interface is a temporary bridge to autonomous systems.
+Modern distributed systems are too complex to hold in your head. They are emergent. A single user request might touch 50 microservices, cross three availability zones, and hit six different databases.
+
+When a high-severity incident occurs, your only lifeline is the telemetry data your system emits. This category is dedicated to the art and science of capturing, processing, and interpreting that data. We believe that high-quality runtime signals are the prerequisite for effective AI reasoning.
+
+## Upcoming Engineering Notes
+
+This section will house deep dives into the messy reality of handling production telemetry at scale.
+
+<CardGroup cols={1}>
+  <Card title="The High-Cardinality Trap" icon="arrow-up-right-dots">
+    Why your metrics solution falls over during an incident, and how to design signal ingestion that survives the very spikes you need to analyze.
   </Card>
-  <Card title="Self-Healing Systems" icon="band-aid" >
-    Can software fix its own bugs? The state of autonomous remediation.
+  <Card title="Beyond Structured Logging" icon="file-code">
+    JSON logs are just the baseline. We explore semantic logging patterns that encode relationships between services, making distributed tracing easier to bootstrap.
+  </Card>
+  <Card title="Sampling Strategies that Don't Suck" icon="filter-list">
+    In high-throughput systems, you can't keep every trace. We discuss head-based vs. tail-based sampling and how to ensure you catch the 0.1% of errors that matter without bankrupting your storage.
   </Card>
 </CardGroup>
 
-## All Articles
-*Coming soon.*
+## Community
+
+Discuss these topics with other infrastructure engineers and SREs.
+
+<CardGroup cols={2}>
+   <Card title="OnCall Discord" icon="discord" href="/community/discord-invite">
+    Join the #runtime-signals channel to swap war stories about logging pipelines and tracing architectures.
+  </Card>
+</CardGroup>
