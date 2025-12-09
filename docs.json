@@ -14,7 +14,7 @@
                 "tab": "Engineering Notes",
                 "groups": [
                     {
-                        "group": "categories",
+                        "group": "Categories",
                         "pages": [
                             "categories/architecture/index",
                             "categories/code-intelligence/index",
