@@ -5,19 +5,21 @@ description: "Technical deep dives into debugging, distributed systems, and the 
 
 ## Featured
 
-<Card title="Why AI Debugging Needs a Hybrid Architecture: Local Context, Cloud Reasoning" icon="star" href="categories/architecture/why-ai-debugging-needs-hybrid-architecture" img="/images/blog/cover.png">
+<Card title="Why AI Debugging Needs a Hybrid Architecture: Local Context, Cloud Reasoning" icon="star" href="categories/architecture/why-ai-debugging-needs-hybrid-architecture">
   ![Why AI Debugging Needs a Hybrid Architecture: Local Context, Cloud Reasoning](/images/blog/cover.png)
 
   Why effective AI debugging requires local runtime introspection paired with cloud-based LLM reasoning.
 </Card>
 
 ## Browse by categories
+import { CardGroup, Card } from "@/components/Card"
+import { posts } from "@/content/index"
 
 <CardGroup cols={2}>
-  <Card title="Architecture" icon="newspaper" href="categories/architecture/index" img="/images/blog/cover.png">
+  <Card title="Architecture" icon="newspaper" href="categories/architecture/index">
     Deep dives into local-first design, log ingestion, and distributed systems.
   </Card>
-  <Card title="Code Intelligence" icon="newspaper" href="categories/code-intelligence/index" img="/images/blog/cover.png">
+  <Card title="Code Intelligence" icon="newspaper" href="categories/code-intelligence/index">
     Static analysis, ASTs, and understanding code structure.
   </Card>
   <Card title="Debugging Cases" icon="newspaper" href="categories/debugging-cases/index">
@@ -34,46 +36,47 @@ description: "Technical deep dives into debugging, distributed systems, and the 
 ## Articles
 
 <CardGroup cols={2}>
-  <Card title="Inside OnCall (Part 2): How Local Log Processing Supercharges Cloud AI Analysis" icon="newspaper" href="categories/runtime-signals/inside-oncall-part-2-local-log-processing-runtime-signals">
-    Why preprocessing logs locally creates cleaner signals and dramatically reduces LLM token usage.
-  </Card>
-  <Card title="Context Bloat vs Token Hunger: How to Balance LLM Inputs" icon="newspaper" href="categories/llm-reasoning/context-bloat-vs-token-hunger-balancing-llm-inputs">
-    How to balance context size and token limits in LLM systems without degrading reasoning quality or increasing cost.
-  </Card>
-  <Card title="The Hidden Cost of Context Bloat in AI Debugging—and How We Avoid It" icon="newspaper" href="categories/llm-reasoning/hidden-cost-of-context-bloat-ai-debugging">
-    Why excessive context hurts LLM debugging accuracy, and how minimal, signal-first context dramatically improves reasoning.
-  </Card>
-  <Card title="Inside OnCall (Part 4): How We Repurposed LangChain Deep Research" icon="newspaper" href="categories/llm-reasoning/inside-oncall-part-4-repurposed-langchain-deep-research">
-    How OnCall adapts LangChain’s Deep Research patterns to drive deeper, more reliable debugging-oriented LLM reasoning.
-  </Card>
-  <Card title="The Future of AI Debugging" icon="newspaper" href="categories/future-of-debugging/ai-debugging-guide">
-    Why OnCall is moving from console.log to autonomous agents.
-  </Card>
-  <Card title="Why AI Debugging Should Start Locally: The Case for On-Source Context Collection" icon="newspaper" href="categories/engineering-lessons/why-ai-debugging-should-start-locally">
-    Why runtime-local context collection is essential for accurate, reliable AI-powered debugging.
-  </Card>
-  <Card title="Inside OnCall (Part 3): Git-Aware Debugging and the Importance of Knowing What Changed" icon="newspaper" href="categories/debugging-cases/inside-oncall-part-3-git-aware-debugging">
-    How git diffs and time-travel file reads give LLMs the most powerful debugging context.
-  </Card>
-  <Card title="Inside OnCall (Part 1): How We Built Fast Local Code Intelligence" icon="newspaper" href="categories/code-intelligence/inside-oncall-part-1-fast-local-code-intelligence">
-    How OnCall uses fast, local code intelligence primitives to dramatically improve LLM-powered debugging and reasoning.
-  </Card>
-  <Card title="Why We Chose ripgrep Over grep for AI‑Assisted Code Search" icon="newspaper" href="categories/code-intelligence/ripgrep-vs-grep-ai-assisted-code-search">
-    A practical, performance-driven comparison of ripgrep vs grep for AI-assisted code search workflows.
-  </Card>
-  <Card title="Why AI Debugging Needs a Hybrid Architecture: Local Context, Cloud Reasoning" icon="newspaper" href="categories/architecture/why-ai-debugging-needs-hybrid-architecture">
-    Why effective AI debugging requires local runtime introspection paired with cloud-based LLM reasoning.
-  </Card>
-  <Card title="Building a Reliable Request–Response Pattern Over WebSockets" icon="newspaper" href="categories/architecture/reliable-request-response-patterns-over-websockets">
-    How to build synchronous-feeling request–response APIs over WebSockets using Promises and correlation IDs—and when Redis is actually the right abstraction.
-  </Card>
-  <Card title="Start as a Monolith, Then Chip Microservices Away" icon="newspaper" href="categories/architecture/start-with-a-monolith-then-chip-away-microservices.mdxstart-with-a-monolith-then-chip-away-microservices">
-    Why starting with a monolith leads to better systems, faster debugging, and healthier microservice boundaries—and how to split services only when the architecture forces you to.
-  </Card>
-  <Card title="AI Paradigms: One-Shot Prompts, Rigid Graphs, and Soft Frameworks" icon="newspaper" href="categories/architecture/llm-agent-paradigms-one-shot-rigid-graphs-soft-frameworks">
-    A practical comparison of three dominant AI system design paradigms—one-shot prompting, rigid agent graphs, and soft frameworks—and how each trades off control, flexibility, and reliability in production systems.
-  </Card>
+  {posts
+    .filter((post) =>
+      [
+        // Inside OnCall series
+        "categories/code-intelligence/inside-oncall-part-1-fast-local-code-intelligence",
+        "categories/runtime-signals/inside-oncall-part-2-local-log-processing-runtime-signals",
+        "categories/debugging-cases/inside-oncall-part-3-git-aware-debugging",
+        "categories/llm-reasoning/inside-oncall-part-4-repurposed-langchain-deep-research",
+
+        // LLM reasoning & context
+        "categories/llm-reasoning/context-bloat-vs-token-hunger-balancing-llm-inputs",
+        "categories/llm-reasoning/hidden-cost-of-context-bloat-ai-debugging",
+
+        // Architecture
+        "categories/architecture/why-ai-debugging-needs-hybrid-architecture",
+        "categories/architecture/reliable-request-response-patterns-over-websockets",
+        "categories/architecture/start-with-a-monolith-then-chip-away-microservices",
+        "categories/architecture/llm-agent-paradigms-one-shot-rigid-graphs-soft-frameworks",
+
+        // Engineering / philosophy
+        "categories/engineering-lessons/why-ai-debugging-should-start-locally",
+        "categories/future-of-debugging/ai-debugging-guide",
+
+        // Code intelligence
+        "categories/code-intelligence/ripgrep-vs-grep-ai-assisted-code-search"
+      ].includes(post.slug)
+    )
+    .map((post) => (
+      <Card
+        key={post.slug}
+        title={post.title}
+        icon="newspaper"
+        href={post.slug}
+        img={post.image}
+        cta="Read more"
+      >
+        {post.description}
+      </Card>
+    ))}
 </CardGroup>
+
 
 ## The Philosophy
 
