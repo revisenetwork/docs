@@ -12,8 +12,7 @@ description: "Technical deep dives into debugging, distributed systems, and the 
 </Card>
 
 ## Browse by categories
-import { CardGroup, Card } from "@/components/Card"
-import { posts } from "@/content/index"
+
 
 <CardGroup cols={2}>
   <Card title="Architecture" icon="newspaper" href="categories/architecture/index">
@@ -34,48 +33,101 @@ import { posts } from "@/content/index"
 </CardGroup>
 
 ## Articles
+import { CardGroup, Card } from "@/components/Card"
+import { posts } from "@/content/index"
 
 <CardGroup cols={2}>
-  {posts
-    .filter((post) =>
-      [
-        // Inside OnCall series
-        "categories/code-intelligence/inside-oncall-part-1-fast-local-code-intelligence",
-        "categories/runtime-signals/inside-oncall-part-2-local-log-processing-runtime-signals",
-        "categories/debugging-cases/inside-oncall-part-3-git-aware-debugging",
-        "categories/llm-reasoning/inside-oncall-part-4-repurposed-langchain-deep-research",
+  <Card
+    title="Inside OnCall (Part 2): How Local Log Processing Supercharges Cloud AI Analysis"
+    icon="newspaper"
+    href="/categories/runtime-signals/inside-oncall-part-2-local-log-processing-runtime-signals"
+    img="/images/blog/cover.png"
+    cta="Read more"
+  >
+    Why preprocessing logs locally creates cleaner signals and dramatically reduces LLM token usage.
+  </Card>
 
-        // LLM reasoning & context
-        "categories/llm-reasoning/context-bloat-vs-token-hunger-balancing-llm-inputs",
-        "categories/llm-reasoning/hidden-cost-of-context-bloat-ai-debugging",
+  <Card
+    title="Context Bloat vs Token Hunger: How to Balance LLM Inputs"
+    icon="newspaper"
+    href="/categories/llm-reasoning/context-bloat-vs-token-hunger-balancing-llm-inputs"
+    img="/images/blog/cover.png"
+    cta="Read more"
+  >
+    How to balance context size and token limits in LLM systems without degrading reasoning quality or increasing cost.
+  </Card>
 
-        // Architecture
-        "categories/architecture/why-ai-debugging-needs-hybrid-architecture",
-        "categories/architecture/reliable-request-response-patterns-over-websockets",
-        "categories/architecture/start-with-a-monolith-then-chip-away-microservices",
-        "categories/architecture/llm-agent-paradigms-one-shot-rigid-graphs-soft-frameworks",
+  <Card
+    title="The Hidden Cost of Context Bloat in AI Debugging—and How We Avoid It"
+    icon="newspaper"
+    href="/categories/llm-reasoning/hidden-cost-of-context-bloat-ai-debugging"
+    img="/images/blog/cover.png"
+    cta="Read more"
+  >
+    Why excessive context hurts LLM debugging accuracy, and how minimal, signal-first context dramatically improves reasoning.
+  </Card>
 
-        // Engineering / philosophy
-        "categories/engineering-lessons/why-ai-debugging-should-start-locally",
-        "categories/future-of-debugging/ai-debugging-guide",
+  <Card
+    title="Inside OnCall (Part 4): How We Repurposed LangChain Deep Research"
+    icon="newspaper"
+    href="/categories/llm-reasoning/inside-oncall-part-4-repurposed-langchain-deep-research"
+    img="/images/blog/cover.png"
+    cta="Read more"
+  >
+    How OnCall adapts LangChain’s Deep Research patterns to drive deeper, more reliable debugging-oriented LLM reasoning.
+  </Card>
 
-        // Code intelligence
-        "categories/code-intelligence/ripgrep-vs-grep-ai-assisted-code-search"
-      ].includes(post.slug)
-    )
-    .map((post) => (
-      <Card
-        key={post.slug}
-        title={post.title}
-        icon="newspaper"
-        href={post.slug}
-        img={post.image}
-        cta="Read more"
-      >
-        {post.description}
-      </Card>
-    ))}
+  <Card
+    title="Inside OnCall (Part 3): Git-Aware Debugging and the Importance of Knowing What Changed"
+    icon="newspaper"
+    href="/categories/debugging-cases/inside-oncall-part-3-git-aware-debugging"
+    img="/images/blog/cover.png"
+    cta="Read more"
+  >
+    How git diffs and time-travel file reads give LLMs the most powerful debugging context.
+  </Card>
+
+  <Card
+    title="Inside OnCall (Part 1): How We Built Fast Local Code Intelligence"
+    icon="newspaper"
+    href="/categories/code-intelligence/inside-oncall-part-1-fast-local-code-intelligence"
+    img="/images/blog/cover.png"
+    cta="Read more"
+  >
+    How OnCall uses fast, local code intelligence primitives to dramatically improve LLM-powered debugging and reasoning.
+  </Card>
+
+  <Card
+    title="Why We Chose ripgrep Over grep for AI-Assisted Code Search"
+    icon="newspaper"
+    href="/categories/code-intelligence/ripgrep-vs-grep-ai-assisted-code-search"
+    img="/images/blog/cover.png"
+    cta="Read more"
+  >
+    A practical, performance-driven comparison of ripgrep vs grep for AI-assisted code search workflows.
+  </Card>
+
+  <Card
+    title="Why AI Debugging Needs a Hybrid Architecture: Local Context, Cloud Reasoning"
+    icon="newspaper"
+    href="/categories/architecture/why-ai-debugging-needs-hybrid-architecture"
+    img="/images/blog/cover.png"
+    cta="Read more"
+  >
+    Why effective AI debugging requires local runtime introspection paired with cloud-based LLM reasoning.
+  </Card>
+
+  <Card
+    title="Why AI Debugging Should Start Locally: The Case for On-Source Context Collection"
+    icon="newspaper"
+    href="/categories/engineering-lessons/why-ai-debugging-should-start-locally"
+    img="/images/blog/cover.png"
+    cta="Read more"
+  >
+    Why runtime-local context collection is essential for accurate, reliable AI-powered debugging.
+  </Card>
 </CardGroup>
+
 
 
 ## The Philosophy
