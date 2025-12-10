@@ -3,32 +3,30 @@ title: "Engineering Notes"
 description: "Technical deep dives into debugging, distributed systems, and the architecture behind OnCall.  These are engineering notes documenting system behavior, architectural decisions, and real-world debugging lessons. Whether you use OnCall or not, we hope you learn something about how modern distributed systems break (and how to fix them)."
 ---
 
-
-
 ## Featured
 
+<Card title="The Future of AI Debugging" icon="star" href="categories/future-of-debugging/ai-debugging-guide" cta="Read">
+  ![The Future of AI Debugging](https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=800&q=80)
 
-<Card title="The Future of AI Debugging" icon="star" href="categories/future-of-debugging/ai-debugging-guide" size="large">
-  <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=800&q=80" alt="The Future of AI Debugging" />
   Why OnCall is moving from console.log to autonomous agents.
 </Card>
 
 ## Browse by categories
 
 <CardGroup cols={2}>
-  <Card title="Architecture" href="categories/architecture/index" icon="newspaper">
+  <Card title="Architecture" icon="newspaper" href="categories/architecture/index">
     Deep dives into local-first design, log ingestion, and distributed systems.
   </Card>
-  <Card title="Code Intelligence" href="categories/code-intelligence/index" icon="newspaper">
+  <Card title="Code Intelligence" icon="newspaper" href="categories/code-intelligence/index">
     Static analysis, ASTs, and understanding code structure.
   </Card>
-  <Card title="Debugging Cases" href="categories/debugging-cases/index" icon="newspaper">
+  <Card title="Debugging Cases" icon="newspaper" href="categories/debugging-cases/index">
     War stories, post-mortems, and real-world investigations.
   </Card>
-  <Card title="Engineering Lessons" href="categories/engineering-lessons/index" icon="newspaper">
+  <Card title="Engineering Lessons" icon="newspaper" href="categories/engineering-lessons/index">
     Best practices, hard-learned truths, and dev culture.
   </Card>
-  <Card title="Future of Debugging" href="categories/future-of-debugging/index" icon="newspaper">
+  <Card title="Future of Debugging" icon="newspaper" href="categories/future-of-debugging/index">
     Agents, autonomous remediation, and the road ahead.
   </Card>
 </CardGroup>
@@ -38,35 +36,6 @@ description: "Technical deep dives into debugging, distributed systems, and the 
 <CardGroup cols={1}>
   <Card title="Why Logs > Prompts" icon="file-lines">
     **The Manifesto.** Copilots hallucinate because they lack context. OnCall bets on runtime signals over chat windows. Read why we process logs locally instead of relying on long prompts.
-  </Card>
-</CardGroup>
-
-## Browse by Topic
-
-<CardGroup cols={2}>
-  <Card title="Architecture" icon="server">
-    Local-first processing, high-throughput ingestion, and system design.
-  </Card>
-  <Card title="Code Intelligence" icon="code">
-    Static analysis, AST mapping, and understanding source code structure.
-  </Card>
-  <Card title="Runtime Signals" icon="wave-pulse">
-    Interpreting live logs, traces, and separating signal from noise.
-  </Card>
-  <Card title="LLM Reasoning" icon="brain">
-    Context engineering, token optimization, and preventing hallucinations.
-  </Card>
-  <Card title="Debugging Cases" icon="bug">
-    War stories and step-by-step root cause analysis of real outages.
-  </Card>
-  <Card title="Engineering Lessons" icon="book-open">
-    Culture, incident response protocols, and the human side of SRE.
-  </Card>
-  <Card title="Security & Safety" icon="shield-check">
-    PII redaction, zero-retention policies, and privacy architecture.
-  </Card>
-  <Card title="Future of Debugging" icon="telescope">
-    Agents vs. Copilots and the move toward autonomous remediation.
   </Card>
 </CardGroup>
 
