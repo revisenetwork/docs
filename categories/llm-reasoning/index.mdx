@@ -1,43 +1,8 @@
 ---
 title: "LLM Reasoning"
-description: "Engineering context for autonomous agents. Moving beyond simple prompts to reliable, verifiable system behavior."
+description: "Deep dives into prompt engineering, context management, and the decision-making logic of our AI agents."
+icon: "microchip-ai"
 mode: "wide"
-icon: "brain"
 ---
 
-<Note>
-  **The shift from Chatbots to Agents.**
-  It’s easy to make an LLM write code. It’s hard to trust an LLM to deploy a fix to production. This category explores the engineering required to cross that gap—moving from stochastic text generation to deterministic system actions.
-</Note>
-
-## The Challenge
-
-Copilots are excellent assistants because a human is always in the loop to verify the output. But autonomous debugging agents don't have that luxury. They need to reason about complex distributed systems without hallucinating.
-
-In this section, we document our research and engineering efforts into making LLMs reliable enough for on-call scenarios. We focus on context engineering over prompt engineering—giving the model the right runtime signals so it doesn't have to guess.
-
-## Future Topics & Research Areas
-
-We are actively writing notes on the following subjects.
-
-<CardGroup cols={2}>
-  <Card title="Structured Context Ingestion" icon="database">
-    How to flatten complex trace data and log clumps into formats that maximize LLM comprehension without blowing up token budgets.
-  </Card>
-  <Card title="Constraining Outputs" icon="brackets-curly">
-    Moving beyond natural language. Techniques for forcing models to output strictly validated JSON schema or executable tool calls.
-  </Card>
-  <Card title="Hallucination Guardrails" icon="shield-xmark">
-    Implementing verification steps where the agent must prove its proposed root cause against actual runtime data before suggesting a fix.
-  </Card>
-  <Card title="Eval Frameworks for SRE Agents" icon="chart-network">
-    How do you measure the success of a debugging agent? It's not BLEU scores. We're defining metrics based on Mean Time To Recovery (MTTR) reduction and accuracy of root cause identification.
-  </Card>
-</CardGroup>
-
----
-
-<Note>
-  **Want early access to these workflows?**
-  We are building Termite, an agentic sandbox for debugging distributed systems. [Sign up for early access](https://oncall.build/signup).
-</Note>
+## All Articles
