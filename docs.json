@@ -12,6 +12,11 @@
         "global": {
             "anchors": [
                 {
+                    "anchor": "Home",
+                    "href": "https://oncall.mintlify.app/",
+                    "icon": "home"
+                },
+                {
                     "anchor": "Main Website",
                     "href": "https://oncall.build",
                     "icon": "globe"
