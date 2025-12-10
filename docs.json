@@ -1,6 +1,6 @@
 {
     "$schema": "https://mintlify.com/docs.json",
-    "name": "OnCall Debug",
+    "name": "OnCall Blog",
     "theme": "mint",
     "colors": {
         "primary": "#2F8000",
