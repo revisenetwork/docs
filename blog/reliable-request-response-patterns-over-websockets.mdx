@@ -1,0 +1,32 @@
+---
+title: "Building a Reliable Request–Response Pattern Over WebSockets"
+date: "2025-12-04"
+category: "Architecture"
+image: "/blog/images/websocket-request-response.png"
+description: "How to build synchronous-feeling request–response APIs over WebSockets using Promises and correlation IDs—and when Redis is actually the right abstraction."
+---
+
+When building AI agents or distributed systems where the backend triggers work on a remote client, you quickly run into a deceptively hard problem:
+
+**How do you send a WebSocket request and wait for the reply right below that line of code—without overengineering the system?**
+
+Most teams either:
+- Hack together fragile event listeners, or
+- Add Redis just to simulate a request–response cycle
+
+There’s a simpler, more reliable approach for most systems.
+
+---
+
+## The problem we’re really solving
+
+WebSockets are inherently event-driven:
+
+- Backend sends an event
+- Client responds with another event
+- Backend must capture that response and continue execution
+
+But what developers want is something that feels like this:
+
+```ts
+const result = await runRemoteTask(payload);
