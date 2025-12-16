@@ -1,0 +1,24 @@
+# Analytics
+
+Analytics in OnCall are centered around usage and behavior tied to your API keys so you can understand adoption and impact.
+
+#### Usage analytics
+
+From the dashboard’s token view you can:
+
+* **Measure adoption:** increasing token usage over time usually indicates more developers or services are relying on OnCall for debugging.
+* **Identify heavy users or teams (when keys are scoped):** if you assign different keys to different teams or environments, comparing their usage curves helps you see who is getting the most value.
+* **Monitor incident‑driven usage:** spikes can correlate with production incidents or major deploys; this helps you understand when OnCall is most critical to your workflow.
+
+#### Improving how you use OnCall
+
+You can use dashboard analytics to tune how you run OnCall:
+
+* If most tokens are spent in production keys, consider:
+  * Tightening `code_available` / `logs_available` where appropriate.
+  * Moving some exploratory debugging to staging or dev.
+* If usage is low for a team that should be using OnCall heavily:
+  * Re‑share quickstart and common workflow docs.
+  * Confirm that `oncall.yaml` and `API_KEY` are correctly configured in that environment.
+
+Together, Monitoring and Analytics give you a simple way to see how OnCall is being used across keys and environments, without exposing sensitive application data in the dashboard itself.

@@ -1,0 +1,100 @@
+# Commands
+
+This page provides the complete reference for the OnCall CLI commands and top‑level flags.
+
+| Command | Description | Example |
+|--------|-------------|---------|
+| `oncall --help` | Show usage help and exit. | `oncall --help` |
+| `oncall --version` / `oncall -v` | Print the installed OnCall CLI version and exit. | `oncall --version` |
+| `oncall init [-id <project-id>] -m <description>` | Initialize OnCall configuration and create/update `oncall.yaml` for the current directory. | `oncall init -id my-app -m "Node.js API"` |
+| `oncall login <auth-key>` | Save your API key into `~/.oncall/config`. | `oncall login abc123xyz789` |
+| `oncall config [-id <project-id>] -m <description>` | Update project metadata for the current directory in `~/.oncall/config`. | `oncall config -id my-app -m "Updated desc"` |
+| `oncall cluster` | Start the local WebSocket cluster server on port 4466 for multi‑service debugging. | `oncall cluster` |
+| `oncall <command>...` | Run any shell command under OnCall’s interactive debugging interface. | `oncall npm run dev` |
+
+### `oncall init` options
+
+Initializes configuration for the current project and writes `oncall.yaml`.
+
+* `-m <description>` (required) – Human‑readable description of the service.
+* `-id <project-id>` (optional) – Project identifier used to group services into a cluster. If omitted, you will be prompted to enter one interactively.
+
+**Example**
+
+```bash
+oncall init -id my-app -m "Node.js REST API backend"
+```
+
+### `oncall login` arguments
+
+Stores your API key in `~/.oncall/config`:
+
+* `<auth-key>` (required) – Obtain this from the OnCall dashboard (`https://app.oncall.build`).
+
+**Example**
+
+```bash
+oncall login abc123xyz789
+```
+
+### `oncall config` options
+
+Updates project mapping for the current directory in `~/.oncall/config`. This is useful when:
+
+* You want to change the project description.
+* You want to associate the current path with a different project ID.
+* You want to sync `window_id`, `logs_available`, and `code_available` into the projects mapping.
+
+**Options:**
+
+* `-m <description>` (required) – New description for this service/path.
+* `-id <project-id>` (optional) – Target project ID to associate this path with. If omitted, you will be prompted to choose or enter one.
+
+**Example**
+
+```bash
+oncall config -id my-app -m "API backend with auth and billing"
+```
+
+### `oncall cluster`
+
+Starts a local WebSocket server (`ws://127.0.0.1:4466` by default) that:
+
+* Registers services when you run `oncall <command>` in directories with `oncall.yaml`.
+* Keeps a registry of all services for each project `id`.
+* Lets the OnCall debugging service see your app’s architecture (services + access flags).
+
+The command does not accept additional arguments. Stop the cluster server with `Ctrl+C` in that terminal.
+
+**Example**
+
+```bash
+oncall cluster
+```
+
+### `oncall <command>...`
+
+Wraps any shell command with OnCall’s interactive debugging interface:
+
+* The command is executed via a pseudo‑terminal.
+* Logs are streamed into the OnCall UI.
+* You can ask questions in the chat pane while the command runs.
+* The OnCall debugging service may use tools (logs/code) according to your `oncall.yaml` flags.
+
+**Examples**
+
+```bash
+oncall npm run dev
+oncall python app.py
+oncall docker-compose up
+oncall node server.js --port 3000
+```
+
+### Global flags
+
+OnCall CLI supports a small set of top‑level flags:
+
+* `--help`, `-h` – Print usage help and exit.
+* `--version`, `-v` – Print the installed OnCall CLI version and exit.
+
+These flags are handled before any subcommand or wrapped command is executed.

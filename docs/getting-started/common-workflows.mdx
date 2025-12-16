@@ -1,0 +1,125 @@
+# Common Workflows
+
+Learn key OnCall CLI workflows with concise steps and best‑practice notes to get the most out of AI‑assisted debugging—whether you’re on a single service or a clustered, multi‑service setup.
+
+### 1) Live Debugging a Single Service
+
+Use when: You’re running one service locally and need quick answers from live logs.
+
+**Steps**
+
+1. Run under OnCall: `oncall npm run dev` (or any command).
+2. Watch the Logs pane; when an error appears, ask in chat: “What’s causing this error?”
+3. AI uses recent logs and may call:
+   * `tail_logs(n)` for the latest lines
+   * `get_recent_errors(n)` to surface error lines
+   * `grep_logs(pattern, before, after)` to pull context
+   * `read_file(path, line, before, after)` if `code_available: true`
+4. Apply the suggested fix; keep chatting without restarting.
+
+### 2) Cross‑Service / Cluster Debugging
+
+Use when: Multiple services (frontend, backend, workers) share a project `id`.
+
+**Steps**
+
+1. Start cluster: `oncall cluster` (separate terminal).
+2. Start each service with the same `id` in `oncall.yaml`: `oncall <command>`.
+3. Ask from any service: “Why are API requests failing?”
+4. AI fetches cluster architecture and can:
+   * Pull logs from any service (`tail_logs`, `grep_logs`, `get_recent_errors`)
+   * Read code where `code_available: true`
+   * Correlate issues across services (e.g., frontend 500s → backend DB timeouts).
+
+### 3) Production Log‑Only Investigation
+
+Use when: You must not expose code (`code_available: false`) but can share logs.
+
+**Steps**
+
+1. Run with log streaming (e.g., `oncall tail -f /var/log/app.log`).
+2. Ask: “What are the most common errors in the last hour?”
+3. AI sticks to log tools:
+   * `get_recent_errors(n)` to surface errors
+   * `grep_logs(pattern, before, after)` to find patterns (e.g., timeouts)
+   * `read_logs(page)` / `tail_logs(n)` for history or latest context.
+
+### 4) Debugging from Stack Traces (Code + Logs)
+
+Use when: You have a stack trace and need code context.
+
+**Steps**
+
+1. Paste/point to the error in chat: “Error at src/api/users.js:45”.
+2. AI may call:
+   * `read_file(path, line, before, after)` for surrounding code
+   * `grep_search(term, filters…)` to find related definitions/usages
+   * Log tools to validate runtime context
+3. AI proposes the minimal fix, referencing the inspected code.
+
+### 5) Searching Logs for Patterns and Recent Failures
+
+Use when: You need to spot patterns or isolate fresh failures.
+
+**Tools**
+
+* `grep_logs(pattern, before, after)`: find all matches with context (e.g., `timeout`, `ECONNREFUSED`).
+* `get_recent_errors(n)`: quickly list the latest error‑like lines.
+* `tail_logs(n)`: grab the freshest output after a change or deploy.
+* `read_logs(page)`: page through history in 50‑line chunks.
+
+### 6) Continuous Monitoring Check‑Ins
+
+Use when: A long‑running process is up and you want periodic health reads.
+
+**Steps**
+
+1. Keep the process running under OnCall (e.g., `oncall docker-compose up`).
+2. Periodically ask: “Any issues I should know about?”
+3. AI will scan with `get_recent_errors`, `grep_logs`, and `tail_logs` to summarize emerging issues.
+
+### 7) Build / Deploy Troubleshooting
+
+Use when: Builds or scripts fail and you need quick diagnosis.
+
+**Steps**
+
+1. Run the build under OnCall (e.g., `oncall npm run build`).
+2. Ask: “Why did the build fail?”
+3. AI inspects recent logs, lists the errors, and (if allowed) reads offending files (`read_file`) or searches code (`grep_search`) to propose fixes.
+
+### 8) Database / Migration Issues
+
+Use when: Migrations or DB interactions fail.
+
+**Steps**
+
+1. Run migration under OnCall (e.g., `oncall npm run migrate`).
+2. Ask: “What’s wrong with this migration?”
+3. AI uses `grep_logs("FOREIGN KEY", …)`, `get_recent_errors`, and targeted `read_file` on migration scripts (if `code_available: true`) to pinpoint ordering or constraint issues.
+
+### 9) Performance Signals from Logs
+
+Use when: You suspect slow endpoints or queries.
+
+**Steps**
+
+1. Ask: “Any performance issues?”
+2. AI scans logs for slow patterns (e.g., via `grep_logs(">2000ms", before, after)` or keywords like “slow query”).
+3. AI summarizes hotspots and suggests next checks; if code access is allowed, it can inspect relevant code paths.
+
+### 10) Multi‑Language Stack Debugging
+
+Use when: Services in different languages share the same project `id`.
+
+**Steps**
+
+1. Ensure each service has `oncall.yaml` with the shared `id`.
+2. Ask cross‑stack questions (e.g., “API returning wrong data format”).
+3. AI can read code in each service (where permitted) and correlate logs to find language‑boundary issues.
+
+### Tips
+
+* Keep `logs_available` / `code_available` aligned to environment (prod vs dev).
+* Use the same project `id` to unify services; a unique `window_id` identifies each service instance.
+* Remember shortcuts: `Tab` (focus), `Ctrl+D` (view cycle), `Ctrl+R` (reset chat), `Ctrl+L` (clear logs), `Ctrl+K` (clear chat).

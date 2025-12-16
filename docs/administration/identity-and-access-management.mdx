@@ -1,0 +1,67 @@
+# Identity and Access Management
+
+OnCall CLI lets you control exactly what the AI debugger can see and use for each service. Access is enforced locally in the CLI before any tool call is executed.
+
+#### Per‑service access flags (`oncall.yaml`)
+
+Each service has an `oncall.yaml` with two key flags:
+
+* **`logs_available`** (boolean)
+  * If `true`, the AI can call log tools for this service: `read_logs`, `tail_logs`, `grep_logs`, `get_recent_errors`.
+  * If `false`, these tools are denied, and the AI can only work with log text embedded directly in your question.
+* **`code_available`** (boolean)
+  * If `true`, the AI can call code tools for this service: `read_file`, `grep_search`.
+  * If `false`, these tools are denied, and the AI cannot read or search your codebase for that service.
+
+When a tool call arrives from the OnCall debugging service, the CLI checks these flags:
+
+* If access is allowed, the tool runs locally and the result is sent back.
+* If access is denied, the CLI posts a denial message instead of running the tool, and the AI continues with limited context.
+
+#### Environment‑specific patterns
+
+You can use the same project `id` across environments but tune flags per service:
+
+* **Development**
+  * Typical: `logs_available: true`, `code_available: true`
+  * AI can both inspect logs and read/search code to propose fixes.
+* **Staging / Pre‑production**
+  * Possible: `logs_available: true`, `code_available: true` or `false` depending on sensitivity.
+  * Allows realistic debugging while still restricting code access if needed.
+* **Production**
+  * Typical: `logs_available: true`, `code_available: false`
+  * AI can analyze operational logs for incidents without reading production code.
+
+#### Project and cluster boundaries
+
+* **Project ID (`id`)** groups services into a logical app.
+* **Service ID (`window_id`)** identifies a specific service instance within that app.
+
+The cluster server (`oncall cluster`) shares only:
+
+* Service metadata: `id`, `name`, `description`, `path`, `window_id`.
+* Access flags: `logs_available`, `code_available`.
+
+Cluster information lets the AI:
+
+* See which services exist in the app.
+* Decide which services it can use code or logs from, based on flags.
+* Route tool calls to the correct service instance.
+
+#### Credential management
+
+Authentication to the OnCall debugging service is via an API key stored in `~/.oncall/config`:
+
+```bash
+API_KEY=your-api-key-here
+```
+
+* Set this once per machine with `oncall login <api-key>`.
+* The CLI reads this file when starting a session and includes the key when connecting to the backend.
+* Each API key is tied to usage visible in the OnCall dashboard (current usage, total tokens, and usage over time).
+
+If you need to rotate a key:
+
+1. Create a new key in the OnCall dashboard.
+2. Run `oncall login <new-api-key>` to update `~/.oncall/config`.
+3. If you no longer want the old key to be usable, delete it from the OnCall dashboard.
