@@ -71,7 +71,7 @@
             "group": "ADMINISTRATION",
             "pages": [
               "docs/administration/advanced-installation",
-              "docs/administration/iam",
+              "docs/administration/identity-and-access-management",
               "docs/administration/security",
               "docs/administration/data-usage",
               "docs/administration/monitoring",
