@@ -1,89 +1,149 @@
 {
-    "$schema": "https://mintlify.com/docs.json",
-    "name": "OnCall Blog",
-    "theme": "mint",
-    "colors": {
-        "primary": "#2F8000",
-        "light": "#45BD00",
-        "dark": "#45BD00"
-    },
-    "favicon": "/favicon.svg",
-    "navigation": {
-        "global": {
-            "anchors": [
-                {
-                    "anchor": "Home",
-                    "href": "https://oncall.mintlify.app/",
-                    "icon": "home"
-                },
-                {
-                    "anchor": "Main Website",
-                    "href": "https://oncall.build",
-                    "icon": "globe"
-                }
+  "$schema": "https://mintlify.com/docs.json",
+  "name": "OnCall Debug",
+  "theme": "mint",
+  "colors": {
+    "primary": "#A5FF12",
+    "light": "#6AA800",
+    "dark": "#A5FF12"
+  },
+  "favicon": "/favicon.png",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Engineering Notes",
+        "groups": [
+          {
+            "group": "Categories",
+            "pages": [
+              "blog/architecture/index",
+              "blog/code-intelligence/index",
+              "blog/runtime-signals/index",
+              "blog/llm-reasoning/index",
+              "blog/debugging-cases/index",
+              "blog/engineering-lessons/index",
+              "blog/security-safety/index",
+              "blog/future-of-debugging/index"
             ]
-        },
-        "tabs": [
-            {
-                "tab": "Blog",
-                "groups": [
-                    {
-                        "group": "Categories",
-                        "pages": [
-                            "categories/architecture/index",
-                            "categories/code-intelligence/index",
-                            "categories/runtime-signals/index",
-                            "categories/llm-reasoning/index",
-                            "categories/debugging-cases/index",
-                            "categories/engineering-lessons/index",
-                            "categories/security-and-safety/index",
-                            "categories/future-of-debugging/index"
-                        ]
-                    },
-                    {
-                        "group": "Community",
-                        "pages": [
-                            "community/beyond-prompts",
-                            "community/discord-invite"
-                        ]
-                    }
-                ]
-            }
+          },
+          {
+            "group": "Product",
+            "icon": "box",
+            "pages": [
+              "product/changelog",
+              "product/roadmap",
+              "product/integrations"
+            ]
+          },
+          {
+            "group": "Community",
+            "icon": "users",
+            "pages": [
+              "community/beyond-prompts",
+              "community/discord-invite"
+            ]
+          },
+          {
+            "group": "Company",
+            "icon": "building",
+            "pages": [
+              "company/careers",
+              "company/contact",
+              {
+                "group": "Main Website",
+                "url": "https://oncall.build",
+                "icon": "globe"
+              }
+            ]
+          },
+          {
+            "group": "Legal",
+            "icon": "scale",
+            "pages": [
+              "legal/terms-of-service",
+              "legal/privacy-policy"
+            ]
+          }
         ]
-    },
-    "logo": {
-        "light": "/logo/light.svg",
-        "dark": "/logo/dark.svg"
-    },
-    "navbar": {
-        "links": [
-            {
-                "label": "Contact",
-                "href": "https://github.com"
-            }
-        ],
-        "primary": {
-            "type": "button",
-            "label": "Get Early Access",
-            "href": "https://github.com"
-        }
-    },
-    "contextual": {
-        "options": [
-            "copy",
-            "view",
-            "chatgpt",
-            "claude",
-            "perplexity",
-            "cursor",
-            "vscode"
+      },
+      {
+        "tab": "Docs",
+        "groups": [
+          {
+            "group": "GETTING STARTED",
+            "pages": [
+              "docs/overview",
+              "docs/quickstart",
+              "docs/common-workflows"
+            ]
+          },
+          {
+            "group": "BUILD WITH ONCALL",
+            "pages": [
+              "docs/build/architecture-overview",
+              "docs/build/troubleshooting"
+            ]
+          },
+          {
+            "group": "ADMINISTRATION",
+            "pages": [
+              "docs/administration/advanced-installation",
+              "docs/administration/iam",
+              "docs/administration/security",
+              "docs/administration/data-usage",
+              "docs/administration/monitoring",
+              "docs/administration/analytics"
+            ]
+          },
+          {
+            "group": "CONFIGURATION",
+            "pages": [
+              "docs/configuration/settings"
+            ]
+          },
+          {
+            "group": "REFERENCES",
+            "pages": [
+              "docs/references/commands"
+            ]
+          }
         ]
-    },
-    "footer": {
-        "socials": {
-            "x": "https://github.com",
-            "github": "https://github.com",
-            "linkedin": "https://github.com"
-        }
+      }
+    ]
+  },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Contact",
+        "href": "mailto:hi@oncall.build"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Get Early Access",
+      "href": "https://oncall.build/signup"
     }
+  },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "cursor",
+      "vscode"
+    ]
+  },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/oncalldebug",
+      "github": "https://github.com/oncall",
+      "linkedin": "https://linkedin.com/company/oncall"
+    }
+  }
 }
