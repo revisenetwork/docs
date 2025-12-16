@@ -53,7 +53,7 @@
         "tab": "Docs",
         "groups": [
           {
-            "group": "GETTING STARTED",
+            "group": "Getting Started",
             "pages": [
               "docs/getting-started/overview",
               "docs/getting-started/quickstart",
@@ -61,14 +61,14 @@
             ]
           },
           {
-            "group": "BUILD WITH ONCALL",
+            "group": "Build with OnCall",
             "pages": [
               "docs/build/architecture-overview",
               "docs/build/troubleshooting"
             ]
           },
           {
-            "group": "ADMINISTRATION",
+            "group": "Administration",
             "pages": [
               "docs/administration/advanced-installation",
               "docs/administration/identity-and-access-management",
@@ -79,13 +79,13 @@
             ]
           },
           {
-            "group": "CONFIGURATION",
+            "group": "Configuration",
             "pages": [
               "docs/configuration/settings"
             ]
           },
           {
-            "group": "REFERENCES",
+            "group": "References",
             "pages": [
               "docs/references/commands"
             ]
