@@ -3,65 +3,48 @@
   "name": "OnCall Debug",
   "theme": "mint",
   "colors": {
-    "primary": "#A5FF12",
-    "light": "#6AA800",
-    "dark": "#A5FF12"
+    "primary": "#2F8000",
+    "light": "#45BD00",
+    "dark": "#45BD00"
   },
-  "favicon": "/favicon.png",
+  "favicon": "/favicon.svg",
   "navigation": {
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Home",
+          "href": "https://oncall.mintlify.app/",
+          "icon": "home"
+        },
+        {
+          "anchor": "Main Website",
+          "href": "https://oncall.build",
+          "icon": "globe"
+        }
+      ]
+    },
     "tabs": [
       {
-        "tab": "Engineering Notes",
+        "tab": "Blog",
         "groups": [
           {
             "group": "Categories",
             "pages": [
-              "blog/architecture/index",
-              "blog/code-intelligence/index",
-              "blog/runtime-signals/index",
-              "blog/llm-reasoning/index",
-              "blog/debugging-cases/index",
-              "blog/engineering-lessons/index",
-              "blog/security-safety/index",
-              "blog/future-of-debugging/index"
-            ]
-          },
-          {
-            "group": "Product",
-            "icon": "box",
-            "pages": [
-              "product/changelog",
-              "product/roadmap",
-              "product/integrations"
+              "categories/architecture/index",
+              "categories/code-intelligence/index",
+              "categories/runtime-signals/index",
+              "categories/llm-reasoning/index",
+              "categories/debugging-cases/index",
+              "categories/engineering-lessons/index",
+              "categories/security-and-safety/index",
+              "categories/future-of-debugging/index"
             ]
           },
           {
             "group": "Community",
-            "icon": "users",
             "pages": [
               "community/beyond-prompts",
               "community/discord-invite"
-            ]
-          },
-          {
-            "group": "Company",
-            "icon": "building",
-            "pages": [
-              "company/careers",
-              "company/contact",
-              {
-                "group": "Main Website",
-                "url": "https://oncall.build",
-                "icon": "globe"
-              }
-            ]
-          },
-          {
-            "group": "Legal",
-            "icon": "scale",
-            "pages": [
-              "legal/terms-of-service",
-              "legal/privacy-policy"
             ]
           }
         ]
@@ -119,13 +102,13 @@
     "links": [
       {
         "label": "Contact",
-        "href": "mailto:hi@oncall.build"
+        "href": "https://github.com"
       }
     ],
     "primary": {
       "type": "button",
       "label": "Get Early Access",
-      "href": "https://oncall.build/signup"
+      "href": "https://github.com"
     }
   },
   "contextual": {
@@ -141,9 +124,9 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/oncalldebug",
-      "github": "https://github.com/oncall",
-      "linkedin": "https://linkedin.com/company/oncall"
+      "x": "https://github.com",
+      "github": "https://github.com",
+      "linkedin": "https://github.com"
     }
   }
 }
