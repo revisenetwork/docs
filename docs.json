@@ -63,8 +63,8 @@
           {
             "group": "Build with OnCall",
             "pages": [
-              "docs/build/architecture-overview",
-              "docs/build/troubleshooting"
+              "docs/build-with-oncall/architecture-overview",
+              "docs/build-with-oncall/troubleshooting"
             ]
           },
           {
