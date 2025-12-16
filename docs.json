@@ -55,9 +55,9 @@
           {
             "group": "GETTING STARTED",
             "pages": [
-              "docs/overview",
-              "docs/quickstart",
-              "docs/common-workflows"
+              "docs/getting-started/overview",
+              "docs/getting-started/quickstart",
+              "docs/getting-started/common-workflows"
             ]
           },
           {
