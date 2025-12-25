@@ -13,13 +13,13 @@
       "anchors": [
         {
           "anchor": "Home",
-          "href": "https://oncall.mintlify.app/",
-          "icon": "home"
+          "icon": "home",
+          "href": "https://oncall.mintlify.app/"
         },
         {
           "anchor": "Main Website",
-          "href": "https://oncall.build",
-          "icon": "globe"
+          "icon": "globe",
+          "href": "https://oncall.build"
         }
       ]
     },
@@ -90,6 +90,12 @@
               "docs/references/commands"
             ]
           }
+        ]
+      },
+      {
+        "tab": "Changelog",
+        "pages": [
+          "changelog/untitled-page"
         ]
       }
     ]
