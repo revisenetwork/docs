@@ -95,7 +95,8 @@
       {
         "tab": "Changelog",
         "pages": [
-          "changelog/untitled-page"
+          "changelog/untitled-page-1",
+          "changelog/oncall-v0-1-0-initial-release"
         ]
       }
     ]
