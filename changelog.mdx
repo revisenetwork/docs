@@ -1,0 +1,44 @@
+---
+title: "OnCall Changelog"
+description: "Product updates, releases, and improvements to the OnCall AI debugging CLI"
+sidebarTitle: "Changelog"
+mode: "frame"
+---
+
+<Update
+  label="v0.4.0"
+  description="Multi-service debugging and project-level context"
+  tags={["Multi-Service Debugging", "CLI", "Architecture"]}
+>
+## Multi-Service AI Debugging Across Frontend and Backend
+
+v0.4.0 introduces **project-level, multi-service debugging** in OnCall.  
+You can now investigate issues that span across frontend, backend, workers, and more — **in a single session**.
+
+---
+
+### 🚀 What’s New
+
+- 🧩 **`oncall cluster`**  
+  Debug across multiple services by registering them to a shared local cluster.
+
+- 🏗️ **`oncall init`**  
+  Group related processes under a single project ID for cleaner system-level investigations.
+
+- 🔁 **Multi-process debugging**  
+  Attach and inspect multiple running processes together.
+
+- 🌐 **Cross-service context expansion**  
+  AI investigations now reason over logs and runtime signals from all connected services.
+
+- 🧹 **CLI standardization**  
+  Renamed npm package to `oncall-cli` and standardized the command as `oncall`.
+
+---
+
+### 🧠 Why This Matters
+
+Most production issues are **distributed bugs**, not single-process failures.
+
+This release shifts OnCall from *process-level debugging* to **system-level investigation**, making it practical for real-world architectures.
+</Update>
