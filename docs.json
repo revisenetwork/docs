@@ -1,13 +1,16 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "name": "OnCall Debug",
+  "name": "OnCall Documentation & more",
   "theme": "mint",
   "colors": {
-    "primary": "#2F8000",
-    "light": "#45BD00",
-    "dark": "#45BD00"
+    "primary": "#6529FF",
+    "light": "#7A4DFF",
+    "dark": "#8B6CFF"
   },
-  "favicon": "/favicon.svg",
+  "favicon": {
+    "light": "/images/LightFavicon.svg",
+    "dark": "/images/DarkFavicon.svg"
+  },
   "navigation": {
     "global": {
       "anchors": [
@@ -101,14 +104,15 @@
     ]
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/images/LogoLight.svg",
+    "dark": "/images/LogoDark.svg",
+    "href": "https://oncall.build/?utm_source=OnCall-Docs&utm_medium=Nav+Logo"
   },
   "navbar": {
     "links": [
       {
         "label": "Contact",
-        "href": "https://github.com"
+        "href": "https://oncall.build/contact?utm_source=OnCall-Docs&utm_medium=Nav+Logo"
       }
     ],
     "primary": {
@@ -134,5 +138,33 @@
       "github": "https://github.com",
       "linkedin": "https://github.com"
     }
+  },
+  "background": {
+    "color": {
+      "dark": "#0E0E14"
+    },
+    "decoration": "windows"
+  },
+  "description": "Runtime-aware AI debugging for modern systems. Explore OnCall’s CLI, architecture, and investigation workflows.",
+  "fonts": {
+    "family": "IBM Plex Sans",
+    "source": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&display=swap",
+    "weight": 400,
+    "heading": {
+      "family": "IBM Plex Sans",
+      "weight": 600,
+      "source": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@600&display=swap",
+      "format": "woff"
+    },
+    "body": {
+      "family": "IBM Plex Sans",
+      "source": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&display=swap",
+      "weight": 400,
+      "format": "woff"
+    },
+    "format": "woff"
+  },
+  "search": {
+    "prompt": "Ask anything. But to debug, install OnCall"
   }
 }
