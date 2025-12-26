@@ -1,0 +1,150 @@
+---
+title: "AI Can Write Code Now — So Why Does Debugging Still Eat My Week?"
+description: "AI can generate code, tests, and refactors, but real-world debugging is still slow. The real bottleneck isn’t fixing bugs — it’s gathering evidence."
+category: "Debugging Cases"
+icon: "bug"
+image: "/images/blog/ai-debugging-execution-gap.png"
+keywords:
+  - AI debugging
+  - runtime debugging
+  - distributed systems
+  - LLM debugging
+  - developer tools
+  - logs and tracing
+---
+
+## AI for coding feels real now
+
+Cursor, Claude, ChatGPT — they can crank out features, refactors, tests, and docs faster than I can type.
+
+That part is solved.
+
+But the moment something breaks — especially anything involving **runtime behavior or distributed systems** — I’m back in the same loop I’ve been in for years:
+
+- chasing the *right* logs  
+- grepping for clues  
+- stitching context across services  
+- pasting snippets into an AI and hoping it doesn’t guess  
+
+The irony is obvious:  
+AI can write the fix faster than ever — but **debugging still eats my week**.
+
+---
+
+## The real bottleneck isn’t writing code
+
+When things break, the hard part is rarely the fix.
+
+It’s the **evidence gathering**.
+
+Finding:
+- the log line that actually matters  
+- the request path that crossed services  
+- the handoff where behavior subtly changed  
+- the slice of code that *explains* what just happened  
+
+Most debugging time isn’t spent reasoning.  
+It’s spent **collecting fragments of truth** scattered across terminals, dashboards, and repos.
+
+<Callout type="note">
+Debugging distributed systems fails in the whitespace — between services, between logs, between expectations and reality.
+</Callout>
+
+---
+
+## Why “just ask AI to debug” doesn’t work
+
+Most AI debugging today assumes a magical mental model:
+
+> *“Paste enough context and the AI will figure it out.”*
+
+That breaks down fast in real systems.
+
+A static-first AI:
+- sees valid code  
+- sees no obvious bug  
+- fills gaps with plausible explanations  
+
+Which is dangerous, because **debugging is not about plausibility**.  
+It’s about **verifiable evidence**.
+
+---
+
+## A different mental model: teach AI to do the chores
+
+Instead of asking AI to “debug”, I’ve started thinking about it differently:
+
+Don’t give AI authority.  
+Give it **responsibility**.
+
+Specifically, force an **evidence-based loop** where the AI:
+
+1. Finds the *relevant* lines (not all the lines)  
+2. Connects signals across services  
+3. Makes a claim **and points to evidence**  
+4. Suggests a next check you can run immediately  
+   (no “trust me”, no black boxes)
+
+You stay in control.  
+The AI does the boring, mechanical work.
+
+<Callout type="tip">
+Good debugging tools don’t replace engineers.  
+They collapse the distance between signal and understanding.
+</Callout>
+
+---
+
+## What we’re experimenting with in the OnCall Lab
+
+This is exactly what we’re exploring in the **OnCall Lab**.
+
+It’s a live demo of **terminal-first debugging** where:
+- AI pulls evidence from your *running* app  
+- logs are inspected locally  
+- only small, relevant code slices are surfaced  
+- every conclusion is backed by something you can verify  
+
+No repo indexing.  
+No log scraping.  
+No “paste your whole system and pray”.
+
+---
+
+## What we’ll cover (60 minutes)
+
+- A live incident: delegate the investigation end-to-end  
+- A second failure mode (because the first one is never the only one)  
+- How it works — in plain English  
+- How you can try it yourself  
+- Open Q&A  
+
+<Callout type="info">
+The session is online via Google Meet.  
+The join button appears shortly before the event starts.
+</Callout>
+
+---
+
+## A question I’d love your take on
+
+If this resonates — or if you think it’s naive — I’d genuinely like your perspective:
+
+**What’s the hardest part to delegate to AI during real debugging?**
+
+- Log navigation?  
+- Cross-service tracing?  
+- Or trusting the conclusion at the end?
+
+---
+
+## Event link
+
+👉 **https://luma.com/kcyw0bu0**
+
+---
+
+Debugging isn’t going away.  
+But the *drudgery* should.
+
+That’s the bet we’re testing.
