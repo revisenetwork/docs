@@ -17,7 +17,7 @@
         {
           "anchor": "Home",
           "icon": "home",
-          "href": "https://oncall.mintlify.app/"
+          "href": "/index"
         },
         {
           "anchor": "Main Website",
