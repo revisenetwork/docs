@@ -1,19 +1,17 @@
 ---
 title: "Quickstart"
-description: "
-Welcome to OnCall CLI! This quickstart gets you using AI‑powered debugging in minutes—install, initialize, log in, run your first AI‑assisted session, and iterate with the built‑in tools."
+description: " Welcome to OnCall CLI! This quickstart gets you using AI‑powered debugging in minutes—install, initialize, log in, run your first AI‑assisted session, and iterate with the built‑in tools."
 icon: "bolt"
 ---
-
 
 ### Before you begin
 
 Make sure you have:
 
-* Node.js 18+ installed.
-* API key from OnCall Web Studio (stored in `~/.oncall/config`).
-* A project directory to run commands in.
-* Ability to run `oncall cluster` in a separate terminal.
+- Node.js 18+ installed.
+- API key from [OnCall Web Studio](http://app.oncall.build/) (stored in `~/.oncall/config`).
+- A project directory to run commands in.
+- Ability to run `oncall cluster` in a separate terminal.
 
 ### Step 1: Install OnCall‑Cli
 
@@ -28,8 +26,8 @@ cd /path/to/your/project
 oncall init -m "Describe this service" -id "<project-id>"
 ```
 
-* Creates `oncall.yaml` with `id`, `window_id`, and access flags `logs_available` / `code_available`.
-* Use the same `id` across services to group them into one cluster.
+- Creates `oncall.yaml` with `id`, `window_id`, and access flags `logs_available` / `code_available`.
+- Use the same `id` across services to group them into one cluster.
 
 ### Step 3: Log in
 
@@ -37,7 +35,7 @@ oncall init -m "Describe this service" -id "<project-id>"
 oncall login <your-api-key>
 ```
 
-* Stores `API_KEY` in `~/.oncall/config`.
+- Stores `API_KEY` in `~/.oncall/config`.
 
 ### Step 4 : Start the cluster server
 
@@ -47,7 +45,7 @@ Run this in a separate terminal if you have multiple services:
 oncall cluster
 ```
 
-* Keeps a local registry so the AI can see all services sharing the same project `id`.
+- Keeps a local registry so the AI can see all services sharing the same project `id`.
 
 ### Step 5: Run your first AI‑assisted session
 
@@ -61,29 +59,29 @@ oncall docker-compose up
 
 What happens:
 
-* Command runs in a pseudo‑terminal; logs stream live.
-* CLI opens a WebSocket to the backend with your `API_KEY` + `window_id`.
-* You get a split UI: logs on the left, AI chat on the right.
+- Command runs in a pseudo‑terminal; logs stream live.
+- CLI opens a WebSocket to the backend with your `API_KEY` + `window_id`.
+- You get a split UI: logs on the left, AI chat on the right.
 
 ### Step 6: Ask your first question
 
 Type in the chat pane:
 
-* “What’s causing this error?”
-* “Why are API requests failing?”
-* “What just happened?”
+- “What’s causing this error?”
+- “Why are API requests failing?”
+- “What just happened?”
 
 The CLI sends your question plus recent logs (and cluster architecture if available). The AI may call local tools:
 
-* **Logs:** `tail_logs`, `grep_logs`, `get_recent_errors`, `read_logs` (requires `logs_available: true`)
-* **Code:** `read_file`, `grep_search` (requires `code_available: true`)
+- **Logs:** `tail_logs`, `grep_logs`, `get_recent_errors`, `read_logs` (requires `logs_available: true`)
+- **Code:** `read_file`, `grep_search` (requires `code_available: true`)
 
 ### Step 7: Iterate quickly
 
-* `Ctrl+R` reset chat
-* `Ctrl+D` cycle views (split → full chat → full logs)
-* `Tab` switch focus; `↑/↓` scroll focused pane
-* `Ctrl+L` clear logs; `Ctrl+K` clear chat
+- `Ctrl+R` reset chat
+- `Ctrl+D` cycle views (split → full chat → full logs)
+- `Tab` switch focus; `↑/↓` scroll focused pane
+- `Ctrl+L` clear logs; `Ctrl+K` clear chat
 
 ### Minimal “hello” run
 

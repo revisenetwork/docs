@@ -6,8 +6,8 @@ Learn about OnCall CLI, an AI‑powered debugging tool that runs in your termina
 
 **Prerequisites**
 
-* Node.js 18+ installed  
-* An OnCall account and API key from the dashboard ([app.oncall.build](https://app.oncall.build))
+- Node.js 18+ installed
+- An OnCall account and API key from the [dashboard](http://app.oncall.build/) ([app.oncall.build](https://app.oncall.build))
 
 #### Install OnCall CLI
 
@@ -37,16 +37,16 @@ On first use, `oncall login` stores your API key in `~/.oncall/config`. After th
 
 ### What it does for you
 
-* **Real‑time debugging:** run any command through OnCall CLI, stream logs live, and ask the AI to explain failures or propose fixes while the process runs.
-* **Multi‑service log Q&A:** query logs across multiple services that share the same project ID (frontend, backend, workers, microservices).
-* **Contextual code inspection:** let the AI read targeted slices of code (when `code_available: true`) to explain or fix issues it detects in logs.
-* **Cross‑service correlation:** with the local cluster server, AI can reason across all registered services in a project, pick which service to inspect, and trace issues end to end.
-* **Tooling you control:** AI uses local tools (`read_file`, `grep_search`, `tail_logs`, `grep_logs`, `get_recent_errors`, `read_logs`) and respects `logs_available` / `code_available` flags.
+- **Real‑time debugging:** run any command through OnCall CLI, stream logs live, and ask the AI to explain failures or propose fixes while the process runs.
+- **Multi‑service log Q&A:** query logs across multiple services that share the same project ID (frontend, backend, workers, microservices).
+- **Contextual code inspection:** let the AI read targeted slices of code (when `code_available: true`) to explain or fix issues it detects in logs.
+- **Cross‑service correlation:** with the local cluster server, AI can reason across all registered services in a project, pick which service to inspect, and trace issues end to end.
+- **Tooling you control:** AI uses local tools (`read_file`, `grep_search`, `tail_logs`, `grep_logs`, `get_recent_errors`, `read_logs`) and respects `logs_available` / `code_available` flags.
 
 ### Why devs love OnCall CLI
 
-* Works in the terminal you already use (Ink‑based UI with split panes for logs and AI chat; keyboard shortcuts for focus, view toggles, clearing panes).
-* Live log awareness: logs are captured character‑by‑character via `node-pty`, so AI always has the freshest context without reloading.
-* Flexible access control: per‑service `oncall.yaml` flags gate code and log access; safe for production (log‑only) or full‑access development.
-* Multi‑service ready: cluster mode groups services by project ID, enabling unified debugging across devices or pods with minimal setup.
-* Concrete, actionable help: AI doesn’t just diagnose; it reads code (when allowed), searches it, inspects logs, and returns specific fixes or steps.
+- Works in the terminal you already use (Ink‑based UI with split panes for logs and AI chat; keyboard shortcuts for focus, view toggles, clearing panes).
+- Live log awareness: logs are captured character‑by‑character via `node-pty`, so AI always has the freshest context without reloading.
+- Flexible access control: per‑service `oncall.yaml` flags gate code and log access; safe for production (log‑only) or full‑access development.
+- Multi‑service ready: cluster mode groups services by project ID, enabling unified debugging across devices or pods with minimal setup.
+- Concrete, actionable help: AI doesn’t just diagnose; it reads code (when allowed), searches it, inspects logs, and returns specific fixes or steps.
