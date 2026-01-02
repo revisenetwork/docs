@@ -166,5 +166,10 @@
   },
   "search": {
     "prompt": "Ask anything. But to debug, install OnCall"
+  },
+  "integrations": {
+    "ga4": {
+      "measurementId": "G-VH0GSC8YEL"
+    }
   }
 }
