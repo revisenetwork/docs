@@ -1,7 +1,6 @@
 ---
 title: "Architecture Overview"
-description: "This section gives a deeper look at how OnCall CLI’s AI‑powered debugging experience is structured and how you can use it effectively across different projects.
-"
+description: "This section gives a deeper look at how OnCall CLI’s AI‑powered debugging experience is structured and how you can use it effectively across different projects. "
 icon: "sitemap"
 ---
 
@@ -9,47 +8,46 @@ icon: "sitemap"
 
 OnCall CLI exposes two main categories of tools that the backend can call:
 
-* **Code tools** (require `code_available: true` in `oncall.yaml`)
-  * `read_file`: Read code around a specific line.
-  * `grep_search`: Search the codebase for patterns, error strings, or function names.
-
-* **Log tools** (require `logs_available: true` in `oncall.yaml`)
-  * `read_logs`: Page through logs in 50‑line chunks.
-  * `tail_logs`: Get the last N lines of logs.
-  * `grep_logs`: Find patterns in logs with before/after context.
-  * `get_recent_errors`: Extract error‑like lines using a comprehensive error regex.
+- **Code tools** (require `code_available: true` in `oncall.yaml`)
+  - `read_file`: Read code around a specific line. testing
+  - `grep_search`: Search the codebase for patterns, error strings, or function names.
+- **Log tools** (require `logs_available: true` in `oncall.yaml`)
+  - `read_logs`: Page through logs in 50‑line chunks.
+  - `tail_logs`: Get the last N lines of logs.
+  - `grep_logs`: Find patterns in logs with before/after context.
+  - `get_recent_errors`: Extract error‑like lines using a comprehensive error regex.
 
 The backend graph chains these tools as needed—for example:
 
-* Inspect logs → identify error signature → read the relevant file → search related code → refine diagnosis → propose fix.
+- Inspect logs → identify error signature → read the relevant file → search related code → refine diagnosis → propose fix.
 
 ### Cluster Server and Multi‑Service Projects
 
 #### Project identity
 
-* Each service has an `oncall.yaml` with:
-  * `id`: project ID used to group services into a cluster.
-  * `window_id`: unique per‑service identifier used for routing.
-  * `logs_available` / `code_available`: per‑service access flags.
+- Each service has an `oncall.yaml` with:
+  - `id`: project ID used to group services into a cluster.
+  - `window_id`: unique per‑service identifier used for routing.
+  - `logs_available` / `code_available`: per‑service access flags.
 
 #### What `oncall cluster` does
 
-* Starts a local WebSocket server (default `ws://127.0.0.1:4466`).
-* Accepts register requests from each CLI instance and maintains:
-  * `id` (project ID),
-  * `path`,
-  * `description`, `name`,
-  * `window_id`,
-  * `logs_available`, `code_available`.
-* Responds to `fetch_projects` requests from the CLI so it can build an architecture description across all services.
+- Starts a local WebSocket server (default `ws://127.0.0.1:4466`).
+- Accepts register requests from each CLI instance and maintains:
+  - `id` (project ID),
+  - `path`,
+  - `description`, `name`,
+  - `window_id`,
+  - `logs_available`, `code_available`.
+- Responds to `fetch_projects` requests from the CLI so it can build an architecture description across all services.
 
 #### How the AI uses cluster information
 
-* When you ask a question, the CLI:
-  * Loads the current service’s `oncall.yaml`.
-  * Fetches all services for the same `id` from the cluster server (if running).
-  * Generates an architecture string listing each service and what data is available.
-* The backend receives this architecture and can:
-  * Choose which service’s logs to analyze.
-  * Decide which service’s code to inspect.
-  * Correlate problems across multiple services in the same app.
+- When you ask a question, the CLI:
+  - Loads the current service’s `oncall.yaml`.
+  - Fetches all services for the same `id` from the cluster server (if running).
+  - Generates an architecture string listing each service and what data is available.
+- The backend receives this architecture and can:
+  - Choose which service’s logs to analyze.
+  - Decide which service’s code to inspect.
+  - Correlate problems across multiple services in the same app.
