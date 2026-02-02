@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "name": "OnCall Documentation & more",
+  "name": "OpenBug Docs | Investigating & Solving Backlog Tickets",
   "theme": "mint",
   "colors": {
     "primary": "#CC9933",
@@ -120,7 +120,7 @@
     },
     "decoration": "windows"
   },
-  "description": "Runtime-aware AI debugging for modern systems. Explore OnCall’s CLI, architecture, and investigation workflows.",
+  "description": "Learn how to turn bug tickets into verified fixes. OpenBug reproduces cold-start bugs, correlates multi-service logs, and generates RCA reports while building a repository Runbook for your team.",
   "fonts": {
     "family": "IBM Plex Sans",
     "source": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400&display=swap",
