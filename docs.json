@@ -15,11 +15,6 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Home",
-          "icon": "home",
-          "href": "/index"
-        },
-        {
           "anchor": "Main Website",
           "icon": "globe",
           "href": "https://oncall.build"
