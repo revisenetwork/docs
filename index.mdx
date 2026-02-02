@@ -1,106 +1,39 @@
 ---
-title: "OnCall - Engineering Notes"
-description: "Technical deep dives into debugging, distributed systems, and the architecture behind OnCall.  These are engineering notes documenting system behavior, architectural decisions, and real-world debugging lessons. Whether you use OnCall or not, we hope you learn something about how modern distributed systems break (and how to fix them)."
+title: "OpenBug — Documentation"
+description: "Technical deep dives into ticket-oriented debugging, distributed systems, and the philosophy of Compound Engineering. These guides document system behavior, architectural decisions, and real-world debugging lessons. Whether you use OpenBug or not, we hope you learn something about how modern distributed systems break—and how to fix them."
 ---
 
-## 
+# Welcome to OpenBug
 
-<Info>
-  ## What is OnCall?
+OpenBug is a **ticket-oriented debugging workspace** built to solve the "cold start" problem[cite: 130, 319]. Instead of generic code chat, OpenBug creates a dedicated harness to reproduce bugs, correlate evidence across multiple services, and generate a verified root-cause analysis[cite: 35, 137].
 
-  OnCall is a runtime-aware AI debugger that helps engineers understand and fix production issues faster by reading live logs, tracing failures across services, and surfacing the real root cause.
-</Info>
 
-# 
 
-## Featured Article
+## The Core Workflow
+OpenBug is designed for the reproduce → root-cause → fix loop[cite: 513, 516].
 
-<Card title="I Can Write Code Now — So Why Does Debugging Still Eat My Week?" icon="star" href="/categories/debugging-cases/ai-can-write-code-why-debugging-still-hard" img="images/blog/ai-debugging-execution-gap.jpg" cta="Read more">
-  AI can generate code, tests, and refactors, but real-world debugging is still slow. The real bottleneck isn’t fixing bugs — it’s gathering evidence.
-</Card>
-
-## Browse by category
-
-<CardGroup cols={2}>
-  <Card title="Architecture" icon="server" color="#0285c7" href="/categories/architecture/index">
-    Deep dives into the system design and infrastructure behind OnCall.
-  </Card>
-  <Card title="Code Intelligence" icon="code" color="#8b5cf6" href="/categories/code-intelligence/index">
-    How OnCall parses, understands, and navigates complex codebases using static analysis and ASTs.
-  </Card>
-  <Card title="Runtime Signals" icon="wave-pulse" color="#10b981" href="/categories/runtime-signals/index">
-    Capturing and interpreting real-time execution data, error logs, and dynamic system states.
-  </Card>
-  <Card title="LLM Reasoning" icon="microchip-ai" color="#ec4899" href="/categories/llm-reasoning/index">
-    Deep dives into prompt engineering, context management, and the decision-making logic of our AI agents.
-  </Card>
-  <Card title="Debugging Cases" icon="bug" color="#f97316" href="/categories/debugging-cases/index">
-    Real-world case studies of gnarly bugs and how autonomous agents resolved them.
-  </Card>
-  <Card title="Engineering Lessons" icon="book-open" color="#eab308" href="/categories/engineering-lessons/index">
-    Retrospectives, best practices, and hard-earned wisdom from building the OnCall platform.
-  </Card>
-  <Card title="Security & Safety" icon="shield-check" color="#0ea5e9" href="/categories/security-and-safety/index">
-    Our approach to sandboxing, data privacy, and ensuring safe autonomous code execution.
-  </Card>
-  <Card title="Future of Debugging" icon="rocket" color="#6366f1" href="/categories/future-of-debugging/index">
-    The roadmap ahead: moving beyond error fixing to proactive system healing and optimization.
-  </Card>
-</CardGroup>
-
-## Articles
-
-<CardGroup cols={2}>
-  <Card title="Inside OnCall (Part 2): How Local Log Processing Supercharges Cloud AI Analysis" href="/categories/runtime-signals/inside-oncall-part-2-local-log-processing-runtime-signals" img="/images/blog/cover.png" cta="Read more">
-    Why preprocessing logs locally creates cleaner signals and dramatically reduces LLM token usage.
-  </Card>
-  <Card title="Context Bloat vs Token Hunger: How to Balance LLM Inputs" href="/categories/llm-reasoning/context-bloat-vs-token-hunger-balancing-llm-inputs" img="/images/blog/cover.png" cta="Read more">
-    How to balance context size and token limits in LLM systems without degrading reasoning quality or increasing cost.
-  </Card>
-  <Card title="The Hidden Cost of Context Bloat in AI Debugging—and How We Avoid It" href="/categories/llm-reasoning/hidden-cost-of-context-bloat-ai-debugging" img="/images/blog/cover.png" cta="Read more">
-    Why excessive context hurts LLM debugging accuracy, and how minimal, signal-first context dramatically improves reasoning.
-  </Card>
-  <Card title="Inside OnCall (Part 4): How We Repurposed LangChain Deep Research" href="/categories/llm-reasoning/inside-oncall-part-4-repurposed-langchain-deep-research" img="/images/blog/cover.png" cta="Read more">
-    How OnCall adapts LangChain’s Deep Research patterns to drive deeper, more reliable debugging-oriented LLM reasoning.
-  </Card>
-  <Card title="Inside OnCall (Part 3): Git-Aware Debugging and the Importance of Knowing What Changed" href="/categories/debugging-cases/inside-oncall-part-3-git-aware-debugging" img="/images/blog/cover.png" cta="Read more">
-    How git diffs and time-travel file reads give LLMs the most powerful debugging context.
-  </Card>
-  <Card title="Inside OnCall (Part 1): How We Built Fast Local Code Intelligence" href="/categories/code-intelligence/inside-oncall-part-1-fast-local-code-intelligence" img="/images/blog/cover.png" cta="Read more">
-    How OnCall uses fast, local code intelligence primitives to dramatically improve LLM-powered debugging and reasoning.
-  </Card>
-  <Card title="Why We Chose ripgrep Over grep for AI-Assisted Code Search" href="/categories/code-intelligence/ripgrep-vs-grep-ai-assisted-code-search" img="/images/blog/cover.png" cta="Read more">
-    A practical, performance-driven comparison of ripgrep vs grep for AI-assisted code search workflows.
-  </Card>
-  <Card title="Why AI Debugging Needs a Hybrid Architecture: Local Context, Cloud Reasoning" href="/categories/architecture/why-ai-debugging-needs-hybrid-architecture" img="/images/blog/cover.png" cta="Read more">
-    Why effective AI debugging requires local runtime introspection paired with cloud-based LLM reasoning.
-  </Card>
-  <Card title="Why AI Debugging Should Start Locally: The Case for On-Source Context Collection" href="/categories/engineering-lessons/why-ai-debugging-should-start-locally" img="/images/blog/cover.png" cta="Read more">
-    Why runtime-local context collection is essential for accurate, reliable AI-powered debugging.
-  </Card>
-</CardGroup>
-
-## The Philosophy
-
-<CardGroup cols={1}>
-  <Card title="Why Logs > Prompts" icon="file-lines">
-    **The Manifesto.** Copilots hallucinate because they lack context. OnCall bets on runtime signals over chat windows. Read why we process logs locally instead of relying on long prompts.
-  </Card>
-</CardGroup>
-
-## Community & Events
-
-<CardGroup cols={2}>
-  <Card title="Beyond Prompts" icon="users">
-    Recaps and recordings from our developer meetups in Bangalore.
-  </Card>
-  <Card title="OnCall Discord" icon="discord">
-    Join the _Runtime Signals_ server to chat about distributed systems.
-  </Card>
-</CardGroup>
+* **Ticket-Oriented Design**: The entry point is a bug assigned to you from JIRA, Linear, or GitHub[cite: 426, 468].
+* **Multi-Service Correlation**: OpenBug runs your services, captures runtime evidence, and correlates what happened across them—so one ticket doesn't mean five terminal tabs[cite: 125, 203].
+* **Compound Engineering**: Every investigation updates a `runbook` file in your repository, building collective team knowledge over time[cite: 528, 921].
 
 ---
 
-<Note>
-  **Ready to debug faster?** OnCall reads your logs so you don't have to. [Get Early Access](https://oncall.build)
-</Note>
+## Workspace Components
+The OpenBug Studio is organized into three main functional areas to help you focus on one task at a time[cite: 117, 233]:
+
+1.  **Investigation Pane**: The central area where the agent output lives and the mission-based chat occurs[cite: 179, 192].
+2.  **Resources Panel**: A view of all connected services, Git repositories, and system architecture to provide grounding evidence[cite: 181, 203].
+3.  **Runbook**: A historical journal of learnings, including reproduction steps and environment insights[cite: 500, 509].
+
+---
+
+## Why OpenBug?
+* **Solves the Cold Start**: Unlike build-time agents (Cursor or Claude Code) that have immediate context, OpenBug is built for backlog bugs where you need to get acquainted with the issue from scratch[cite: 141, 323].
+* **Evidence-Based**: Every suggestion is backed by "evidence pins" from your actual logs and code directory[cite: 183, 193].
+* **Local-First**: Keep your code and logs on your machine while utilizing top-tier AI agents for reasoning[cite: 1004].
+
+---
+
+## Community & Open Source
+* **GitHub**: Star the project or contribute to the open-source debugging stack.
+* **Local-First**: Designed to run where you debug—on your laptop.
