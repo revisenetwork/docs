@@ -1,148 +1,127 @@
 ---
-title: "OnCall Changelog"
+title: "OpenBug Changelog"
 description: "Product updates, releases, and improvements to the OnCall AI debugging CLI"
 sidebarTitle: "Product Updates"
 mode: "center"
 rss: "true"
 ---
 
-<Update
-  label="v0.4.0"
-  description="Multi-service debugging and project-level context"
-  tags={["Multi-Service Debugging", "CLI", "Architecture"]}
->
-## Multi-Service AI Debugging Across Frontend and Backend
+<Update label="v0.4.0" tags={["Multi-Service Debugging", "CLI", "Architecture"]} description="Multi-service debugging and project-level context">
+  ## Multi-Service AI Debugging Across Frontend and Backend
 
-v0.4.0 is a major step forward for OnCall. This release introduces **project-level, multi-service debugging**, allowing developers to investigate issues that span frontend, backend, workers, and other processes in a single session.
+  v0.4.0 is a major step forward for OnCall. This release introduces **project-level, multi-service debugging**, allowing developers to investigate issues that span frontend, backend, workers, and other processes in a single session.
 
-### What’s New
+  ### What’s New
 
-**oncall cluster**  
-Debug across multiple services by registering them to a shared local cluster. This enables correlated investigations across services without switching tools or terminals.
+  **oncall cluster**\
+  Debug across multiple services by registering them to a shared local cluster. This enables correlated investigations across services without switching tools or terminals.
 
-**oncall init**  
-Group related processes under a single project ID, making it easier to reason about complex systems and share a consistent debugging setup across a team.
+  **oncall init**\
+  Group related processes under a single project ID, making it easier to reason about complex systems and share a consistent debugging setup across a team.
 
-**Multi-process debugging in one session**  
-Attach multiple running processes and debug them together instead of treating each service in isolation.
+  **Multi-process debugging in one session**\
+  Attach multiple running processes and debug them together instead of treating each service in isolation.
 
-**Cross-service context expansion**  
-AI investigations now reason over logs and runtime signals from all connected services, not just the process that triggered the investigation.
+  **Cross-service context expansion**\
+  AI investigations now reason over logs and runtime signals from all connected services, not just the process that triggered the investigation.
 
-**CLI standardization**  
-The npm package has been renamed from `clippy-test` to `oncall-cli`, and the standard CLI command is now `oncall`.
+  **CLI standardization**\
+  The npm package has been renamed from `clippy-test` to `oncall-cli`, and the standard CLI command is now `oncall`.
 
-### Why This Matters
+  ### Why This Matters
 
-Most production bugs are distributed across services.  
-This release shifts OnCall from process-level debugging to **system-level investigation**, making it practical for real-world architectures.
+  Most production bugs are distributed across services.\
+  This release shifts OnCall from process-level debugging to **system-level investigation**, making it practical for real-world architectures.
 </Update>
 
-<Update
-  label="v0.3.1"
-  description="Unlimited log search and deeper AI investigations"
-  tags={["AI Investigations", "Runtime Signals"]}
->
-## Unlimited Log Search and Deeper AI Investigations
+<Update label="v0.3.1" tags={["AI Investigations", "Runtime Signals"]} description="Unlimited log search and deeper AI investigations">
+  ## Unlimited Log Search and Deeper AI Investigations
 
-v0.3.1 focuses on removing constraints during debugging and making AI investigations more flexible and cost-efficient.
+  v0.3.1 focuses on removing constraints during debugging and making AI investigations more flexible and cost-efficient.
 
-### What’s New
+  ### What’s New
 
-**Full log search across all available logs**  
-Search without artificial limits on context size, enabling broader exploration before narrowing down a root cause.
+  **Full log search across all available logs**\
+  Search without artificial limits on context size, enabling broader exploration before narrowing down a root cause.
 
-**Expanded investigation scope**  
-Investigations now go beyond breaking failures and support performance issues, anomalies, and unclear runtime behavior.
+  **Expanded investigation scope**\
+  Investigations now go beyond breaking failures and support performance issues, anomalies, and unclear runtime behavior.
 
-**More flexible queries**  
-Ask natural questions across logs, code, and runtime signals without rigid formats.
+  **More flexible queries**\
+  Ask natural questions across logs, code, and runtime signals without rigid formats.
 
-**Reduced token usage**  
-Internal optimizations significantly reduce token consumption during investigations.
+  **Reduced token usage**\
+  Internal optimizations significantly reduce token consumption during investigations.
 
-### Why This Matters
+  ### Why This Matters
 
-Debugging often requires wide exploration before precision.  
-This release removes friction during that exploration phase while keeping investigations efficient.
+  Debugging often requires wide exploration before precision.\
+  This release removes friction during that exploration phase while keeping investigations efficient.
 </Update>
 
-<Update
-  label="v0.3.0"
-  description="Adaptive, tool-driven AI investigations"
-  tags={["AI Investigations", "Architecture"]}
->
-## Adaptive, Tool-Driven AI Debugging
+<Update label="v0.3.0" tags={["AI Investigations", "Architecture"]} description="Adaptive, tool-driven AI investigations">
+  ## Adaptive, Tool-Driven AI Debugging
 
-v0.3.0 upgrades the core investigation engine powering OnCall. AI investigations are no longer fixed scripts and are now adaptive and evidence-driven.
+  v0.3.0 upgrades the core investigation engine powering OnCall. AI investigations are no longer fixed scripts and are now adaptive and evidence-driven.
 
-### What’s New
+  ### What’s New
 
-**Local code and log navigation**  
-During investigations, the AI can navigate local files and logs to ground its reasoning in real runtime evidence.
+  **Local code and log navigation**\
+  During investigations, the AI can navigate local files and logs to ground its reasoning in real runtime evidence.
 
-**Remote investigations with local context**  
-Investigations run remotely while securely accessing local logs and code when needed.
+  **Remote investigations with local context**\
+  Investigations run remotely while securely accessing local logs and code when needed.
 
-**Adaptive investigation flows**  
-Investigation paths can branch, loop, and adjust direction based on new evidence, instead of following fixed step sequences.
+  **Adaptive investigation flows**\
+  Investigation paths can branch, loop, and adjust direction based on new evidence, instead of following fixed step sequences.
 
-### Why This Matters
+  ### Why This Matters
 
-Real debugging is non-linear.  
-This release makes AI behave less like a checklist and more like a thoughtful debugging partner.
+  Real debugging is non-linear.\
+  This release makes AI behave less like a checklist and more like a thoughtful debugging partner.
 </Update>
 
-<Update
-  label="v0.2.0"
-  description="Live AI debugging for running processes"
-  tags={["Live Debugging", "CLI"]}
->
-## Live AI Debugging for Running Processes
+<Update label="v0.2.0" tags={["Live Debugging", "CLI"]} description="Live AI debugging for running processes">
+  ## Live AI Debugging for Running Processes
 
-v0.2.0 introduces interactive AI-assisted debugging for running processes, allowing issues to be investigated as they happen.
+  v0.2.0 introduces interactive AI-assisted debugging for running processes, allowing issues to be investigated as they happen.
 
-### What’s New
+  ### What’s New
 
-**AI-assisted debugging for live processes**  
-Attach OnCall to a running command and investigate runtime behavior in real time.
+  **AI-assisted debugging for live processes**\
+  Attach OnCall to a running command and investigate runtime behavior in real time.
 
-**Split terminal interface**  
-A split view shows live logs alongside AI interaction, removing the need for context switching.
+  **Split terminal interface**\
+  A split view shows live logs alongside AI interaction, removing the need for context switching.
 
-**Optional AI reasoning visibility**  
-Developers can inspect how the AI is reasoning during investigations when deeper understanding is needed.
+  **Optional AI reasoning visibility**\
+  Developers can inspect how the AI is reasoning during investigations when deeper understanding is needed.
 
-### Why This Matters
+  ### Why This Matters
 
-This release turns debugging into a live conversation with your system instead of a post-mortem exercise.
+  This release turns debugging into a live conversation with your system instead of a post-mortem exercise.
 </Update>
 
-<Update
-  label="v0.1.0"
-  description="Initial release"
-  tags={["CLI"]}
->
-## Interactive AI Debugging for a Single Process
+<Update label="v0.1.0" tags={["CLI"]} description="Initial release">
+  ## Interactive AI Debugging for a Single Process
 
-v0.1.0 is the first public release of OnCall, focused on interactive debugging for a single running process.
+  v0.1.0 is the first public release of OnCall, focused on interactive debugging for a single running process.
 
-### What’s Included
+  ### What’s Included
 
-**Interactive AI-assisted debugging**  
-Debug a running command with AI assistance during execution.
+  **Interactive AI-assisted debugging**\
+  Debug a running command with AI assistance during execution.
 
-**Real-time log inspection**  
-Inspect logs as they are produced instead of after failure.
+  **Real-time log inspection**\
+  Inspect logs as they are produced instead of after failure.
 
-**CLI-first workflow**  
-Designed from day one to fit naturally into existing terminal-based developer workflows.
+  **CLI-first workflow**\
+  Designed from day one to fit naturally into existing terminal-based developer workflows.
 
-This version was released under the internal working title `clippy-test`.
+  This version was released under the internal working title `clippy-test`.
 
-### Why This Matters
+  ### Why This Matters
 
-Every system-level debugging tool starts small.  
-This release laid the foundation for everything that followed.
+  Every system-level debugging tool starts small.\
+  This release laid the foundation for everything that followed.
 </Update>
-

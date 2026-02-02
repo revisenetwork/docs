@@ -4,71 +4,59 @@ description: "Learn about OnCall CLI, an AI‑powered debugging tool that runs i
 icon: "book"
 ---
 
-## 🚨 Before you install: get your API key
+# Overview
 
-OnCall CLI requires an **API key** to connect your local debugger to your OnCall account.
-
-### Step 1: Create an OnCall account
-
-Sign up on the OnCall dashboard (takes ~1 minute):
-
-👉 https://app.oncall.build
-
-### Step 2: Generate an API key
-
-1. Open the dashboard  
-2. Go to **Settings → API Keys**  
-3. Click **Create API Key**  
-4. Copy the key (you’ll use it once during setup)
-
-> ⚠️ Keep this key secret. It identifies you and your projects.
-
----
-### Get started in 30 seconds
+### Get started in 30 seconds
 
 **Prerequisites**
 
-- Node.js 18+ installed
-- An OnCall account and API key from the [dashboard](http://app.oncall.build/) ([app.oncall.build](https://app.oncall.build))
+- Node.js 20+ installed
+- An OpenBug account and API key from the dashboard ([`app.oncall.build`](https://app.oncall.build/))
 
-#### Install OnCall CLI
+#### Install OpenBug CLI
 
 ```bash
-npm install -g oncall-cli
+npm install -g @openbug/cli
 ```
 
-#### Start using OnCall CLI
+#### Start using OpenBug CLI
 
 ```bash
 cd your-project
 
-# One‑time setup per project
-oncall init -m "Describe this service" -id "<project-id>"
+# One-time setup per machine
+debug login <your-api-key>
 
-# One‑time setup per machine
-oncall login <your-api-key>
+# Start OpenBug Cli
+debug
 
-# Start OnCall Cluster
-oncall cluster
-
-# Start your app under OnCall’s debugger
-oncall npm run dev
+# Start your app under OpenBug's debugger
+debug npm run dev
 ```
 
-On first use, `oncall login` stores your API key in `~/.oncall/config`. After that, you can prefix any command with `oncall` to launch the interactive logs + AI chat interface.
+On first use, `debug login` stores your API key in `~/.openbug/config`. After that, you can prefix any command with `debug` to launch the interactive logs. For AI chat interface run `debug`.
+
+<Note>
+Continue with:
+
+- [**Quickstart**](/getting-started/quickstart) — step-by-step guide to your first AI-assisted session
+- [**Common workflows**]/getting-started/common-workflows) — real-world debugging patterns for single and multi-service apps
+- [**Troubleshooting**](/build-with-openbug/troubleshooting) — installation and setup tips if you run into issues
+  
+</Note>
 
 ### What it does for you
 
-- **Real‑time debugging:** run any command through OnCall CLI, stream logs live, and ask the AI to explain failures or propose fixes while the process runs.
-- **Multi‑service log Q&A:** query logs across multiple services that share the same project ID (frontend, backend, workers, microservices).
-- **Contextual code inspection:** let the AI read targeted slices of code (when `code_available: true`) to explain or fix issues it detects in logs.
-- **Cross‑service correlation:** with the local cluster server, AI can reason across all registered services in a project, pick which service to inspect, and trace issues end to end.
-- **Tooling you control:** AI uses local tools (`read_file`, `grep_search`, `tail_logs`, `grep_logs`, `get_recent_errors`, `read_logs`) and respects `logs_available` / `code_available` flags.
+- **Real-time debugging:** run any command through OpenBug CLI, stream logs live, and ask the AI to explain failures or propose fixes while the process runs.
+- **Multi-service log Q&A:** query logs across multiple services that share the same project ID (frontend, backend, workers, microservices).
+- **Contextual code inspection:** let the AI read targeted slices of code (when code_available: true) to explain or fix issues it detects in logs.
+- **Cross-service correlation:** with the local cluster server, AI can reason across all registered services in a project, pick which service to inspect, and trace issues end to end.
+- **Tooling you control:** AI uses local tools (read_file, grep_search, tail_logs, grep_logs, get_recent_errors, read_logs) and respects logs_available / code_available flags.
 
-### Why devs love OnCall CLI
+### Why devs love OpenBug CLI 
 
-- Works in the terminal you already use (Ink‑based UI with split panes for logs and AI chat; keyboard shortcuts for focus, view toggles, clearing panes).
-- Live log awareness: logs are captured character‑by‑character via `node-pty`, so AI always has the freshest context without reloading.
-- Flexible access control: per‑service `oncall.yaml` flags gate code and log access; safe for production (log‑only) or full‑access development.
-- Multi‑service ready: cluster mode groups services by project ID, enabling unified debugging across devices or pods with minimal setup.
-- Concrete, actionable help: AI doesn’t just diagnose; it reads code (when allowed), searches it, inspects logs, and returns specific fixes or steps.
+- Works in the terminal you already use (Ink-based UI with split panes for logs and AI chat; keyboard shortcuts for focus, view toggles, clearing panes).
+- **Live log awareness:** logs are captured character-by-character via node-pty, so AI always has the freshest context without reloading.
+- **Flexible access control:** per-service openbug.yaml flags gate code and log access; safe for production (log-only) or full-access development.
+- **Multi-service ready:** cluster mode groups services by project ID, enabling unified debugging across devices or pods with minimal setup.
+-  **Concrete, actionable help:** AI doesn’t just diagnose; it reads code (when allowed), searches it, inspects logs, and returns specific fixes or steps.

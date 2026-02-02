@@ -3,9 +3,9 @@
   "name": "OnCall Documentation & more",
   "theme": "mint",
   "colors": {
-    "primary": "#6529FF",
-    "light": "#7A4DFF",
-    "dark": "#8B6CFF"
+    "primary": "#CC9933",
+    "light": "#BB7D00",
+    "dark": "#FFAA00"
   },
   "favicon": {
     "light": "/images/LightFavicon.svg",
@@ -28,31 +28,6 @@
     },
     "tabs": [
       {
-        "tab": "Blog",
-        "groups": [
-          {
-            "group": "Categories",
-            "pages": [
-              "categories/architecture/index",
-              "categories/code-intelligence/index",
-              "categories/runtime-signals/index",
-              "categories/llm-reasoning/index",
-              "categories/debugging-cases/index",
-              "categories/engineering-lessons/index",
-              "categories/security-and-safety/index",
-              "categories/future-of-debugging/index"
-            ]
-          },
-          {
-            "group": "Community",
-            "pages": [
-              "community/beyond-prompts",
-              "community/discord-invite"
-            ]
-          }
-        ]
-      },
-      {
         "tab": "Docs",
         "groups": [
           {
@@ -64,7 +39,7 @@
             ]
           },
           {
-            "group": "Build with OnCall",
+            "group": "Build with OpenBug",
             "pages": [
               "docs/build-with-oncall/architecture-overview",
               "docs/build-with-oncall/troubleshooting"
@@ -106,13 +81,13 @@
   "logo": {
     "light": "/images/LogoLight.svg",
     "dark": "/images/LogoDark.svg",
-    "href": "https://oncall.build/?utm_source=OnCall-Docs&utm_medium=Nav+Logo"
+    "href": "https://openbug.ai/?utm_source=OnCall-Docs&utm_medium=Nav+Logo"
   },
   "navbar": {
     "links": [
       {
         "label": "Contact",
-        "href": "https://oncall.build/contact?utm_source=OnCall-Docs&utm_medium=Nav+Logo"
+        "href": "https://openbug.ai/contact?utm_source=OnCall-Docs&utm_medium=Nav+Logo"
       }
     ],
     "primary": {
@@ -165,7 +140,7 @@
     "format": "woff"
   },
   "search": {
-    "prompt": "Ask anything. But to debug, install OnCall"
+    "prompt": "Ask anything. Eg. How to Install OpenBug"
   },
   "integrations": {
     "ga4": {

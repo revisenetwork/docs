@@ -3,46 +3,47 @@ title: "Advanced Installation"
 description: "Detailed setup guides for enterprise environments, custom proxies, and air-gapped systems."
 icon: "toolbox"
 ---
+# Advanced installation
 
 ### System Requirements
 
 #### Operating environment
 
-* **Node.js:** OnCall CLI requires Node.js 18+.
-  * Install from your OS package manager or from [nodejs.org](https://nodejs.org).
-  * Use `node -v` to verify you are on 18.x or later.
-* **Package manager:** `npm` (or another Node‑compatible package manager) to install `oncall-cli`.
-* **Shell:** Any shell that can run Node‑based CLIs and your app commands (for example, Bash, Zsh, or a POSIX‑like shell).
-  * On Windows, running inside WSL or a Unix‑like shell is recommended.
+* **Node.js**: OpenBug CLI requires **Node.js 20+**.
+  * Install from your OS package manager or from `nodejs.org`.
+  * Use `node -v` to verify you are on 18.x or later.
+* **Package manager**: `npm` (or another Node-compatible package manager) to install `@openbug/cli`.
+* **Shell**: Any shell that can run Node-based CLIs and your app commands (for example, Bash, Zsh, or a POSIX-like shell).
+  * On Windows, running inside WSL or a Unix-like shell is recommended.
 
 #### Network connectivity
 
-* **OnCall API and WebSocket**  
+* **OpenBug API and WebSocket**
   * HTTPS access to the API base URL configured in the CLI (default: `https://api.oncall.build/v2/api`).
   * WebSocket access to the debugging endpoint (default: `wss://api.oncall.build/v2/ws`).
   * These are required for authentication, AI processing, and streaming responses to your terminal.
-* **Local cluster server**  
-  * When using `oncall cluster`, port 4466 must be available on the machine running the cluster server (or whatever port you configure).
+* **Local cluster server**
+  * When using `debug`, port **4466** must be available on the machine running the cluster server (or whatever port you configure).
   * All services that participate in the same project `id` must be able to reach the cluster server URL (default: `ws://127.0.0.1:4466`).
 
 #### File system and project layout
 
 * Each service you want to debug should have:
   * An accessible project directory (your app’s source and dependencies).
-  * An `oncall.yaml` file in that directory describing:
-    * `id` (project ID used for clustering),
+  * An `openbug.yaml` file in that directory describing:
+    * `id` (project ID used for clustering),
     * `description`, `name`,
     * `window_id`,
     * `logs_available`, `code_available`.
-* The user running OnCall CLI must have read access to:
-  * The project’s code files (for `read_file` / `grep_search` if `code_available: true`).
+* The user running OpenBug CLI must have read access to:
+  * The project’s code files (for `read_file` / `grep_search` if `code_available: true`).
   * Any logs produced by the command being wrapped (for log tools when `logs_available: true`).
 
-#### OnCall service and dashboard
+#### OpenBug service and dashboard
 
-* OnCall’s managed debugging service and dashboard are hosted for you; you do not need to run this service locally.
+* OpenBug's managed debugging service and dashboard are hosted for you; you do **not** need to run this service locally.
 * You do need:
-  * A valid API key from the OnCall dashboard (stored via `oncall login <api-key>`).
-  * Browser access to the dashboard to view usage (tokens, current usage bar, and usage‑by‑date chart) associated with your key.
+  * A valid API key from the OpenBug dashboard (stored in `~/.openbug/config` via `debug login <api-key>`).
+  * Browser access to the dashboard to view usage (tokens, current usage bar, and usage-by-date chart) associated with your key.
 
-If your environment meets these requirements, you can install `oncall-cli`, log in with your API key, and start debugging using the flows described in the quickstart and common workflows docs.
+If your environment meets these requirements, you can install `@openbug/cli`, log in with your API key, and start debugging using the flows described in the quickstart and common workflows docs.

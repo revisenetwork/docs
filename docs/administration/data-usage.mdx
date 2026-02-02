@@ -4,47 +4,47 @@ description: "Track and manage data consumption across your workspaces."
 icon: "chart-column"
 ---
 
-#### What data is sent to the OnCall debugging service
+#### What data is sent to the OpenBug debugging service
 
 The service receives:
 
-* **Your questions:** text you type into the AI chat input.
-* **Logs (when provided):**
-  * Recent log chunks included automatically (for example, the last 50 lines for the first query).
+* **Your questions**: text you type into the AI chat input.
+* **Logs (when provided)**:
+  * Recent log chunks included automatically (for example, the last 50 lines for the first query).
   * Any additional logs you paste or explicitly send.
-* **Tool results (when allowed):**
-  * Outputs of local tools (`read_file`, `grep_search`, `read_logs`, `tail_logs`, `grep_logs`, `get_recent_errors`) when the CLI has `logs_available` / `code_available` set to `true`.
+* **Tool results (when allowed)**:
+  * Outputs of local tools (`read_file`, `grep_search`, `read_logs`, `tail_logs`, `grep_logs`, `get_recent_errors`) when the CLI has `logs_available` / `code_available` set to `true`.
   * These results are stored temporarily in Redis with a short TTL so the debugging graph can retrieve them.
-* **Architecture summary:**
-  * High‑level description of services in your project cluster (project `id`, service names/descriptions, flags for `logs_available` / `code_available`).
+* **Architecture summary**:
+  * High-level description of services in your project cluster (project `id`, service names/descriptions, flags for `logs_available` / `code_available`).
 
-The OnCall debugging service does not directly read from your filesystem or log files; it only sees the data that the CLI sends in response to tool calls or as part of your chat.
+The OpenBug debugging service does **not** directly read from your filesystem or log files; it only sees the data that the CLI sends in response to tool calls or as part of your chat.
 
 #### Controlling data shared with the AI
 
 You can control data sharing at multiple levels:
 
-* **Per‑service flags in `oncall.yaml`:**
+* **Per-service flags in `openbug.yaml`**:
   * Set `code_available: false` to prevent any code from being read or sent via tools for that service.
   * Set `logs_available: false` to prevent automated log tools; AI will then only see logs that you paste or explicitly include in your question.
-* **Environment separation:**
-  * Use more permissive flags in development (full code + logs) and stricter flags in production (log‑only, or even log‑disabled for highly sensitive services).
-* **Manual redaction:**
+* **Environment separation**:
+  * Use more permissive flags in development (full code + logs) and stricter flags in production (log-only, or even log-disabled for highly sensitive services).
+* **Manual redaction**:
   * Avoid pasting secrets or highly sensitive data into chat.
   * When sharing logs manually, you can redact or trim them before sending.
 
 If both `logs_available` and `code_available` are `false`, the service only processes:
 
-* Your natural‑language questions.
+* Your natural-language questions.
 * Any text you explicitly paste or type into chat.
 
 #### Token usage and dashboard
 
-The OnCall dashboard shows:
+The OpenBug dashboard ([`https://app.oncall.build`](https://app.oncall.build/)) shows:
 
-* Current usage for your API key (for example, `230757 / 1000000` tokens).
-* Total tokens consumed.
-* Token usage over time, visualized by date.
+* **Current usage** for your API key (for example, `230757 / 1000000` tokens).
+* **Total tokens** consumed.
+* **Token usage over time**, visualized by date.
 
 This lets you:
 
@@ -52,4 +52,4 @@ This lets you:
 * Identify spikes in usage that may correspond to heavy debugging sessions or new team members.
 * Decide when to rotate keys or adjust how you use the CLI.
 
-Token usage is tied to the API key in `~/.oncall/config`, so using separate keys per environment or per team can make cost monitoring and attribution easier.
+Token usage is tied to the API key in `~/.openbug/config`, so using separate keys per environment or per team can make cost monitoring and attribution easier.

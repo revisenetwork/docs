@@ -3,100 +3,86 @@ title: "Commands"
 description: "This page provides the complete reference for the OnCall CLI commands and top‑level flags."
 icon: "terminal"
 ---
+# Commands
 
-| Command | Description | Example |
-|--------|-------------|---------|
-| `oncall --help` | Show usage help and exit. | `oncall --help` |
-| `oncall --version` / `oncall -v` | Print the installed OnCall CLI version and exit. | `oncall --version` |
-| `oncall init [-id <project-id>] -m <description>` | Initialize OnCall configuration and create/update `oncall.yaml` for the current directory. | `oncall init -id my-app -m "Node.js API"` |
-| `oncall login <auth-key>` | Save your API key into `~/.oncall/config`. | `oncall login abc123xyz789` |
-| `oncall config [-id <project-id>] -m <description>` | Update project metadata for the current directory in `~/.oncall/config`. | `oncall config -id my-app -m "Updated desc"` |
-| `oncall cluster` | Start the local WebSocket cluster server on port 4466 for multi‑service debugging. | `oncall cluster` |
-| `oncall <command>...` | Run any shell command under OnCall’s interactive debugging interface. | `oncall npm run dev` |
+<table><thead><tr><th>Command</th><th>Description</th><th width="250">Example</th></tr></thead><tbody><tr><td><code>debug --help</code></td><td>Show usage help and exit.</td><td><code>debug --help</code></td></tr><tr><td><code>debug --version</code> / <code>debug -v</code></td><td>Print the installed OpenBug CLI version and exit.</td><td><code>debug --version</code></td></tr><tr><td><code>debug init [-id &#x3C;project-id>] -m &#x3C;description></code></td><td>Initialize OpenBug configuration and create/update <code>openbug.yaml</code> for the current directory.</td><td><code>debug init -id openbug-service  -m "Node.js API"</code></td></tr><tr><td><code>debug login &#x3C;auth-key></code></td><td>Save your API key into <code>~/.openbug/config</code>.</td><td><code>debug login abc123xyz789</code></td></tr><tr><td><code>debug</code></td><td>Start the local WebSocket cluster server on port 4466 for multi-service debugging and also Start the Ai chat interface</td><td><code>debug</code> </td></tr><tr><td><code>debug &#x3C;command>...</code></td><td>Run any shell command under OpenBug's interactive debugging.</td><td><code>debug npm run dev</code></td></tr></tbody></table>
 
-### `oncall init` options
+#### `oncall init` options
 
 Initializes configuration for the current project and writes `oncall.yaml`.
 
-* `-m <description>` (required) – Human‑readable description of the service.
-* `-id <project-id>` (optional) – Project identifier used to group services into a cluster. If omitted, you will be prompted to enter one interactively.
+* `-m <description>` (required)
+  * Human-readable description of the service.
+* `-id <project-id>` (optional)
+  * Project identifier used to group services into a cluster.
+  * If omitted, you will be prompted to enter one interactively.
 
-**Example**
+Example:
 
 ```bash
 oncall init -id my-app -m "Node.js REST API backend"
 ```
 
-### `oncall login` arguments
+#### `debug login` arguments
 
-Stores your API key in `~/.oncall/config`:
+Stores your API key in `~/.openbug/config`:
 
-* `<auth-key>` (required) – Obtain this from the OnCall dashboard (`https://app.oncall.build`).
+* `<auth-key>` (required)
+  * Obtain this from the OnCall dashboard (`https://app.oncall.build`).
 
-**Example**
-
-```bash
-oncall login abc123xyz789
-```
-
-### `oncall config` options
-
-Updates project mapping for the current directory in `~/.oncall/config`. This is useful when:
-
-* You want to change the project description.
-* You want to associate the current path with a different project ID.
-* You want to sync `window_id`, `logs_available`, and `code_available` into the projects mapping.
-
-**Options:**
-
-* `-m <description>` (required) – New description for this service/path.
-* `-id <project-id>` (optional) – Target project ID to associate this path with. If omitted, you will be prompted to choose or enter one.
-
-**Example**
+Example:
 
 ```bash
-oncall config -id my-app -m "API backend with auth and billing"
+debug login abc123xyz789
 ```
 
-### `oncall cluster`
+#### `debug`
 
-Starts a local WebSocket server (`ws://127.0.0.1:4466` by default) that:
+#### Starts Ai Chat Interface:
 
-* Registers services when you run `oncall <command>` in directories with `oncall.yaml`.
+* Lets the user to ask questions on the active sessions available
+* Lets user understand what is going wrong in his service
+
+#### Starts a local WebSocket server in the background (`ws://127.0.0.1:4466` by default) that:
+
+* Registers services when you run `debug <command>` in directories with `openbug.yaml`.
 * Keeps a registry of all services for each project `id`.
-* Lets the OnCall debugging service see your app’s architecture (services + access flags).
+* Lets the OpenBug debugging service see your app’s architecture (services + access flags).
 
-The command does not accept additional arguments. Stop the cluster server with `Ctrl+C` in that terminal.
+The command does not accept additional arguments.\
+Stop the server with `Ctrl+C` in that terminal.
 
-**Example**
+Example:
 
 ```bash
-oncall cluster
+debug
 ```
 
-### `oncall <command>...`
+#### `debug <command>...`
 
-Wraps any shell command with OnCall’s interactive debugging interface:
+Wraps any shell command with OpenBug's interactive debugging interface:
 
-* The command is executed via a pseudo‑terminal.
-* Logs are streamed into the OnCall UI.
+* The command is executed via a pseudo-terminal.
+* Logs are streamed into the OpenBug UI.
 * You can ask questions in the chat pane while the command runs.
-* The OnCall debugging service may use tools (logs/code) according to your `oncall.yaml` flags.
+* The OpenBug debugging service may use tools (logs/code) according to your `openbug.yaml` flags.
 
-**Examples**
+Examples:
 
 ```bash
-oncall npm run dev
-oncall python app.py
-oncall docker-compose up
-oncall node server.js --port 3000
+debug npm run dev
+debug python app.py
+debug docker-compose up
+debug node server.js --port 3000
 ```
 
 ### Global flags
 
-OnCall CLI supports a small set of top‑level flags:
+OpenBug CLI supports a small set of top-level flags:
 
-* `--help`, `-h` – Print usage help and exit.
-* `--version`, `-v` – Print the installed OnCall CLI version and exit.
+| Flag              | Description                                      |
+| ----------------- | ------------------------------------------------ |
+| `--help`, `-h`    | Print usage help and exit.                       |
+| `--version`, `-v` | Print the installed OnCall CLI version and exit. |
 
 These flags are handled before any subcommand or wrapped command is executed.
