@@ -1,127 +1,120 @@
 ---
 title: "Troubleshooting"
-description: "This section covers common issues when installing or starting OnCall CLI, based on expected behavior in the codebase."
+description: "This section covers common issues when installing or starting OnCall CLI, based on expected behavior in the codebase."
 icon: "wrench"
 ---
 
+# Troubleshooting
 
 #### Prerequisites checklist
 
-* Node.js 18+ installed on your system.
-* `oncall-cli` installed globally (`npm install -g oncall-cli`).
-* Valid API key from OnCall Web Studio.
-* `oncall.yaml` present in the project root (after running `oncall init`).
+- Node.js 20+ installed on your system.
+- `@openbug/cli` installed globally (`npm install -g @openbug/cli`).
+- Valid API key from OpenBug Web Studio.
+- `openbug.yaml` present in the project root (automatically created after running first script using `debug` as a prefix).
 
-#### oncall: command not found
+---
 
-* **Cause:** global npm bin directory not on your `PATH`, or install didn’t succeed.
-* **Fix:**
-  * Confirm install: `npm list -g --depth=0 | grep oncall-cli`.
-  * Check global bin: `npm bin -g` and ensure that directory is on your shell `PATH`.
-  * Reinstall if needed: `npm install -g oncall-cli`.
+## 🛑 **ERROR: debug: command not found**
 
-#### API key / authentication issues
+- **Cause**: Global npm bin directory not on your `PATH`, or install didn't succeed.
+- **Fix**:
+  - Confirm install: `npm list -g --depth=0 | grep @openbug/cli`
+  - Check global bin: `npm bin -g` and ensure that directory is on your shell `PATH`.
+  - Reinstall if needed: `npm install -g @openbug/cli`
 
-Symptoms may include:
+---
 
-* CLI printing an error that `API_KEY` is missing or empty.
-* WebSocket connection closing immediately after start.
+## 🛑 **ERROR: API key / authentication issues**
+
+**Note**: Ensure your API key is active in the OpenBug Web Studio.
+
+**Symptoms may include:**
+
+- CLI printing an error that `API_KEY` is missing or empty.
+- WebSocket connection closing immediately after start.
 
 **Checks:**
 
-1. Open `~/.oncall/config` and ensure it contains:
+1. Open `~/.openbug/config` and ensure it contains:
 
    ```bash
    API_KEY=your-api-key-here
    ```
-
-2. If the file doesn’t exist or `API_KEY` is empty:
+2. If the file doesn't exist or `API_KEY` is empty:
 
    ```bash
-   oncall login <your-api-key>
+   debug login <your-api-key>
    ```
+3. Re-run your command under OnCall (e.g., `debug npm run dev`).
 
-3. Re‑run your command under OnCall (e.g., `oncall npm run dev`).
+---
 
-#### Missing `oncall.yaml` in project
+## 🛑 **ERROR: Missing openbug.yaml in project**
 
-Symptoms:
+**Symptoms:**
 
-* CLI can’t infer project identity (`id`, `window_id`).
-* Cluster lookups return nothing for this directory.
+- CLI can't infer project identity (`id`, `window_id`).
+- Cluster lookups return nothing for this directory.
 
 **Fix:**
 
 ```bash
 cd /path/to/your/project
-oncall init -m "Describe this service" -id "<project-id>"
+debug init -m "Describe this service" -id "openbug-service"
 ```
 
-This creates `oncall.yaml` with sensible defaults. Use the same `id` across related services.
+This creates `openbug.yaml` with sensible defaults. Use the same `id` as mentioned above across related services.
 
-#### Cluster server not reachable
+---
 
-Symptoms:
+## 🛑 **ERROR: Cluster server not reachable**
 
-* CLI unable to register/fetch project metadata from `ONCALL_CLUSTER_URL`.
-* Architecture sent to backend only includes the current service.
+**Symptoms:**
+
+- CLI unable to register/fetch project metadata from `OPENBUG_CLUSTER_URL`.
+- Architecture sent to backend only includes the current service.
 
 **Checks:**
 
 1. Ensure `oncall cluster` is running in another terminal on the same machine.
 2. Default URL is `ws://127.0.0.1:4466`. If you override `ONCALL_CLUSTER_URL`, confirm host/port.
-3. If cluster isn’t needed (single service), you can ignore this and still debug that one service.
+3. If cluster isn't needed, you can ignore this and still debug that one service.
 
-#### WebSocket connection errors to backend
+---
 
-Symptoms (from CLI output):
+## 🛑 **ERROR: Access denied for tools**
 
-* Messages like “Web Socket connection error, please retry”.
-* Chat pane shows “AI Chat not connected”.
+**Symptoms:**
 
-**Checks:**
-
-1. Confirm network connectivity to the backend endpoint configured in `WEB_SOCKET_URL` (default: `wss://api.oncall.build/v2/ws`).
-2. Ensure your `API_KEY` is valid and not expired/revoked.
-3. Re‑run with a simple, short‑lived command (e.g., `oncall node -e "console.log('test')"`), to rule out local script issues.
-
-#### Access denied for tools
-
-Symptoms:
-
-* AI responses indicating it cannot access logs or code for this service.
-* Tool calls returning messages like “No Access to execute X”.
+- AI responses indicating it cannot access logs or code for this service.
+- Tool calls returning messages like "No Access to execute X".
 
 **Checks:**
 
-1. Open the service’s `oncall.yaml` and verify:
+1. Open the service's `openbug.yaml` and verify:
 
    ```yaml
    logs_available: true
    code_available: true
    ```
+2. For **production** environments, it's expected that `code_available` may be `false`. In that case:
+   - AI can still work with logs (if `logs_available: true`).
+   - Code tools will not be used for that service.
 
-2. For production environments, it’s expected that `code_available` may be `false`. In that case:
+---
 
-   * AI can still work with logs (if `logs_available: true`).
-   * Code tools will not be used for that service.
+## 🛑 **ERROR: Logs not appearing in the UI**
 
-#### Logs not appearing in the UI
+**Symptoms:**
 
-Symptoms:
-
-* Command runs but Logs pane stays empty or incomplete.
+- Command runs but Logs pane stays empty or incomplete.
 
 **Checks:**
 
-1. Confirm the command actually produces stdout/stderr when run without OnCall.
-2. Verify you’re running the command prefixed with `oncall`, not inside an already‑running OnCall shell.
-3. If output is extremely large, remember that:
-   * Logs are truncated to fit terminal width.
-   * Scrolling uses `↑/↓` when the Logs pane is focused.
+1. Confirm the command actually produces stdout/stderr when run **without** openbug.
+2. Verify you're running the command prefixed with `debug`, not inside an already-running OpenBug shell.
 
-*If these checks don’t resolve your issue, capture:*
+---
 
-* The command you ran (with arguments),
-* A snippet of the error output,
-* Contents of `~/.oncall/config` (redacted API key) and `oncall.yaml` (redacted sensitive description if needed), and share them with your support/debugging channel so OnCall can be diagnosed more easily.
+> If these checks don't resolve your issue, capture the command you ran, the error output, and redacted config files to share with your support channel.

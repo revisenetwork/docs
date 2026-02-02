@@ -4,26 +4,29 @@ description: "OnCall provides a lightweight, built‑in way to monitor how the C
 icon: "chart-line"
 ---
 
-#### Per‑key monitoring
+#### Per-key monitoring
 
-For each API key, the dashboard shows:
+For each API key, the [dashboard](https://app.oncall.build/) shows:
 
-* **Current usage:** progress toward the token limit configured for that key (for example, `230757 / 1000000`).
-* **Total tokens:** cumulative tokens consumed so far.
-* **Usage over time:** a date‑based chart that highlights when usage spiked or dropped.
+* **Current usage**: progress toward the token limit configured for that key (for example, `230757 / 1000000`).
+* **Total tokens**: cumulative tokens consumed so far.
+* **Usage over time**: a date-based chart that highlights when usage spiked or dropped.
 
 Typical workflows:
 
-* **Health check:** After onboarding the CLI to a team or project, watch the usage graph to confirm that developers are actually using OnCall and that the pattern matches expectations.
-* **Spike investigation:** If you see a sudden spike on a given day, correlate it with known events (incidents, large refactors, new services added to a cluster).
-* **Per‑environment separation:** Use different API keys for dev, staging, and prod; the dashboard then acts as a simple monitoring view per environment.
+* **Health check**:
+  * After onboarding the CLI to a team or project, watch the usage graph to confirm that developers are actually using OpenBug and that the pattern matches expectations.
+* **Spike investigation**:
+  * If you see a sudden spike on a given day, correlate it with known events (incidents, large refactors, new services added to a cluster).
+* **Per-environment separation**:
+  * Use different API keys for dev, staging, and prod; the dashboard then acts as a simple monitoring view per environment.
 
-#### What the dashboard does not show
+#### What the [dashboard](https://app.openbug.ai/) does *not* show
 
-The dashboard is designed for high‑level monitoring, not detailed logging:
+The dashboard is designed for high-level monitoring, not detailed logging:
 
 * It does **not** display raw log content or code.
 * It does **not** show individual prompts or tool calls.
-* It focuses on aggregate usage and limits so you can keep an eye on how heavily OnCall is being used.
+* It focuses on aggregate usage and limits so you can keep an eye on how heavily OpenBug is being used.
 
-For deeper operational monitoring of your own systems (for example, your application’s logs, metrics, or traces), continue to rely on your existing observability stack; OnCall complements that by helping you interpret those logs and fix issues faster.
+For deeper operational monitoring of your own systems (for example, your application’s logs, metrics, or traces), continue to rely on your existing observability stack; OpenBug complements that by helping you interpret those logs and fix issues faster.

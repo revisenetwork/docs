@@ -1,48 +1,48 @@
 ---
 title: "Security"
-description: "This section describes the main security properties of OnCall CLI based on how the CLI, the OnCall debugging service, and the cluster server interact."
+description: "This section describes the main security properties of OpenBug CLI based on how the CLI, the OnCall debugging service, and the cluster server interact."
 icon: "shield-check"
 ---
 
 
 #### API key handling
 
-* **Storage:**
-  * API keys are stored in `~/.oncall/config` in a simple key‑value format.
-  * Only the user account running OnCall CLI should have read/write access to this file.
-* **Usage:**
-  * The CLI reads the key at startup and uses it only to authenticate to the OnCall debugging service over HTTPS/WebSocket (defaults: `https://api.oncall.build/v2/api`, `wss://api.oncall.build/v2/ws`).
+* **Storage**:
+  * API keys are stored in `~/.openbug/config` in a simple key-value format.
+  * Only the user account running OpenBug CLI should have read/write access to this file.
+* **Usage**:
+  * The CLI reads the key at startup and uses it only to authenticate to the OpenBug debugging service over HTTPS/WebSocket (defaults: `https://api.oncall.build/v2/api`, `wss://api.oncall.build/v2/ws`).
   * Keys are not shared with other processes by the CLI.
-* **Revocation:**
-  * If a key is compromised or no longer needed, delete it from the dashboard (`https://app.oncall.build/`) and run `oncall login <new-api-key>` with a replacement key.
+* **Revocation**:
+  * If a key is compromised or no longer needed, delete it from the dashboard (`https://app.oncall.build/`) and run `debug login <new-api-key>` with a replacement key.
 
 #### Code and log access boundaries
 
-* **Local execution of tools:**
-  * All file and log tools (`read_file`, `grep_search`, `read_logs`, `tail_logs`, `grep_logs`, `get_recent_errors`) execute locally on the machine running OnCall CLI.
-  * The OnCall debugging service never directly reads your filesystem; it only receives the results of tool calls that the CLI decides are allowed.
-* **Opt‑in exposure via flags:**
-  * `logs_available` and `code_available` in `oncall.yaml` explicitly control whether logs or code can be accessed by the AI for a given service.
+* **Local execution of tools**:
+  * All file and log tools (`read_file`, `grep_search`, `read_logs`, `tail_logs`, `grep_logs`, `get_recent_errors`) execute locally on the machine running OpenBug CLI.
+  * The OpenBug debugging service never directly reads your filesystem; it only receives the **results** of tool calls that the CLI decides are allowed.
+* **Opt-in exposure via flags**:
+  * `logs_available` and `code_available` in `openbug.yaml` explicitly control whether logs or code can be accessed by the AI for a given service.
   * When these flags are `false`, the CLI blocks the corresponding tools and sends a denial message instead of any data.
-* **Environment separation:**
+* **Environment separation**:
   * You can use stricter settings in sensitive environments (for example, `code_available: false` in production) while keeping full access in development.
 
 #### Network paths
 
-* **OnCall service communication:**
-  * All communication with the managed OnCall debugging service uses HTTPS (`API_BASE_URL`) and WebSocket over TLS (`WEB_SOCKET_URL`), as configured in the CLI.
+* **OpenBug service communication**:
+  * All communication with the managed OpenBug debugging service uses HTTPS (`API_BASE_URL`) and WebSocket over TLS (`WEB_SOCKET_URL`), as configured in the CLI.
   * Only authenticated sessions (valid API key) can access the debugging graph.
-* **Cluster server:**
-  * The local cluster server (`oncall cluster`) runs on a host/port you control (default `127.0.0.1:4466`).
+* **Cluster server**:
+  * The local cluster server (`debug`) runs on a host/port you control (default `127.0.0.1:4466`).
   * It only shares service metadata and access flags (not full code or logs) with the backend via the CLI’s architecture description.
 
 #### Principle of least privilege
 
-* **Per‑service configuration:**
+* **Per-service configuration**:
   * Each service independently controls whether its logs and code are available to the AI.
   * This lets you keep noisy or sensitive services out of scope while still debugging others.
-* **Scoped data sharing:**
-  * Logs and code are only sent to the OnCall debugging service when the AI explicitly requests a tool and the CLI allows it under the current flags.
-  * If you only ever run OnCall with `logs_available: false` and `code_available: false`, the service only sees your questions and any text you explicitly paste into chat.
+* **Scoped data sharing**:
+  * Logs and code are only sent to the OpenBug debugging service when the AI explicitly requests a tool and the CLI allows it under the current flags.
+  * If you only ever run OpenBug with `logs_available: false` and `code_available: false`, the service only sees your questions and any text you paste into chat.
 
-*Review your `oncall.yaml` and `~/.oncall/config` regularly to ensure they match your organization’s security expectations, especially across development, staging, and production environments.*
+Review your `openbug.yaml` and `~/.openbug/config` regularly to ensure they match your organization’s security expectations, especially across development, staging, and production environments.

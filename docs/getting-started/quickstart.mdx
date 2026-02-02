@@ -4,109 +4,90 @@ description: "Welcome to OnCall CLI! This quickstart gets you using AI‑powered
 icon: "bolt"
 ---
 
-### Prerequisites
+# Quickstart
 
-Before starting, ensure you have:
-- **Node.js 18+** installed on your machine.
-- A project directory to run commands in.
+### Before you begin
 
-### Step 1: Get your API Key
+Make sure you have:
 
-You cannot use the CLI without a valid API key.
+* Node.js 20+ installed.
+* API key from OnCall Web Studio (stored in `~/.openbug/config`).
+* A project directory to run commands in.
+* Ability to run  `debug`  in a separate terminal.
 
-1.  Go to the **[OnCall Dashboard](https://app.oncall.build)**.
-2.  Sign in or create a new account.
-3.  Navigate to **Settings > API Keys**.
-4.  Click **"Generate New Key"** and copy the string (it starts with `oc_`).
-
-> **Note:** Keep this key safe. You will need it for the login step below.
-
-### Step 2: Install OnCall‑CLI
-
-Run the following command in your terminal:
+### Step 1: Install OpenBug
 
 ```bash
-npm install -g oncall-cli
+npm install -g @openbug/cli
 ```
 
-### Step 3: Initialize your project
-
-Navigate to your project folder and initialize OnCall:
+### Step 2: Log in
 
 ```bash
-cd /path/to/your/project
-oncall init -m "Describe this service" -id "<project-id>"
+debug login <your-api-key>
 ```
 
-- This command creates an `oncall.yaml` file with your `id`, `window_id`, and access flags (`logs_available` / `code_available`).
-- **Tip:** Use the same `id` across different services (e.g., frontend, backend) to group them into one cluster.
+* Stores `API_KEY` in `~/.openbug/config`.
 
-### Step 4: Log in
+### Step 3 : Start the OpenBug Cli Interface
 
-Authenticate your machine using the key you generated in Step 1:
+Run this in a separate terminal if you have multiple services:
 
 ```bash
-oncall login <your-api-key>
+debug
 ```
 
-- This stores your `API_KEY` securely in `~/.oncall/config`.
+* Keeps a local registry so the AI can see all services sharing the same project `id`.
 
-### Step 5: Start the cluster server
-
-If you are debugging multiple services, run this in a separate terminal window:
+### Step 5: Run your first AI-assisted session
 
 ```bash
-oncall cluster
-```
-
-- This keeps a local registry so the AI can see all services sharing the same project `id` and reason across them.
-
-### Step 6: Run your first AI‑assisted session
-
-Prefix your usual startup command with `oncall`:
-
-```bash
-oncall npm run dev
+debug npm run dev
 # or
-oncall python app.py
+debug python app.py
 # or
-oncall docker-compose up
+debug docker-compose up
 ```
 
-**What happens:**
-- The command runs in a pseudo‑terminal; logs stream live.
-- The CLI opens a WebSocket to the backend with your `API_KEY` + `window_id`.
-- You get a split UI: **Logs** on the left, **AI Chat** on the right.
+What happens:
 
-### Step 7: Ask your first question
+* Command runs in a pseudo-terminal; logs stream live.
+* CLI opens a WebSocket to the backend with your `API_KEY` + `window_id`.
+* You get a split UI: logs on the left, AI chat on the right.
 
-Type in the chat pane on the right:
+### Step 6: Ask your first question
 
-- “What’s causing this error?”
-- “Why are API requests failing?”
-- “What just happened?”
+Type in the chat pane:
+
+* “What’s causing this error?”
+* “Why are API requests failing?”
+* “What just happened?”
 
 The CLI sends your question plus recent logs (and cluster architecture if available). The AI may call local tools:
-- **Logs:** `tail_logs`, `grep_logs`, `get_recent_errors`, `read_logs` (requires `logs_available: true`)
-- **Code:** `read_file`, `grep_search` (requires `code_available: true`)
 
-### Step 8: Iterate quickly
+* Logs: `tail_logs`, `grep_logs`, `get_recent_errors`, `read_logs` (requires `logs_available: true`)
+* Code: `read_file`, `grep_search` (requires `code_available: true`)
 
-Use these shortcuts to navigate the interface:
+### Step 7: Iterate quickly
 
-- `Ctrl+R`: Reset chat context.
-- `Ctrl+D`: Cycle views (Split View → Full Chat → Full Logs).
-- `Tab`: Switch focus between panes; `↑/↓` to scroll the focused pane.
-- `Ctrl+L`: Clear logs; `Ctrl+K`: Clear chat.
+* `Ctrl+R` reset chat
+* `Ctrl+D` cycle views (split → full chat → full logs)
+* `Tab` switch focus; `↑/↓` scroll focused pane
+* `Ctrl+L` clear logs; `Ctrl+K` clear chat
 
-### Minimal “hello” run
+### **Minimal “hello” run**
 
-Want to test it without a full project? Try this:
+> #### *Launch OpenBug Interface*
 
 ```bash
-oncall init -m "Quick test"
-oncall login <your-api-key>
-oncall node -e "console.log('hello from oncall')"
+debug login <your-api-key>
+debug
 ```
 
-Then ask in the chat pane: “What did this command output?”
+> #### Run Command (in new terminal)
+
+```
+debug node -e "console.log('hello from openbug')"
+```
+
+Then ask in chat: “What did this command output?”
